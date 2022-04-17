@@ -27,7 +27,7 @@ function SearchBar({ placeholder, data }) {
   };
  
   function showBookDetails(event, item) {
-    console.log('showBookDetails item', item);
+    console.log('showBookDetails', item);
   }
 
   return (
