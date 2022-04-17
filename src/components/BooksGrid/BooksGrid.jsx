@@ -3,34 +3,25 @@ import "./BooksGrid.scss";
 import { Row, Card, Col, Container } from 'react-bootstrap';
 import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
-// import CloseIcon from "@material-ui/icons/Close";
+import BookPreview from "../BookPreview/BookPreview";
 
 function BooksGrid({ data }) {
-  // const [booksData, setBooksData] = useState([]);
-  // const [searchterm, setSearchTerm] = useState("");
-
-  // if (searchterm && searchterm !== '') {
-  //   setSearchTerm(searchterm);
-  // }
+  const [modalShow, setModalShow] = React.useState(false);
+  const [selectedBook, setSelectedBook] = React.useState({});
 
   if (data && data.length > 0) {
     data = data.slice(0, 16);
-    // setBooksData(data);
   }
 
-  // function showBookDetails(item) {
-  //   console.log('showBookDetails item', item);
-  // }
-
-  console.log('booksData', data);
-
-  function showBookDetails(item) {
-    console.log('showBookDetails item', item);
+  const showBookDetails = (book) => {
+    setSelectedBook(book);
+    setModalShow(true);
   }
 
-  function downloadBookDetails(item) {
-    console.log('downloadBookDetails item', item);
-  }
+  const downloadBook = (book) => {
+    console.log('downloadBook item', book);
+    setModalShow(false);
+  };
 
   return (
       <>
@@ -52,7 +43,7 @@ function BooksGrid({ data }) {
                     <div className="book-overlay-content">
                       <div className="book-overlay-content-wrapper">
                         <i className="mr-2 p-1 cursor-pointer" onClick={() => showBookDetails(book)}><RemoveRedEyeIcon /></i>
-                        <i className="p-1 cursor-pointer" onClick={() => downloadBookDetails(book)}> <CloudDownloadIcon /></i>
+                        <i className="p-1 cursor-pointer" onClick={() => downloadBook(book)}> <CloudDownloadIcon /></i>
                       </div>
                     </div>
                   </Card>
@@ -61,6 +52,12 @@ function BooksGrid({ data }) {
             })}
           </Row>
         </Container>
+        <BookPreview
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          data={selectedBook}
+          onDownload={() => downloadBook(selectedBook)}
+        />
       </>
   );
 
