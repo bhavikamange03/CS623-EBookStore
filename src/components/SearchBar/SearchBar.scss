@@ -1,34 +1,40 @@
 
 .searchInputs {
-  margin-top: 105px;
+  margin-top: 32px;
   display: flex;
+  border: 1px solid gray;
+  display: inline-flex;
+  border-radius: 20px;
+  padding: 4px 12px;
 }
 
 .search input {
   background-color: white;
   border: 0;
-  border-radius: 2px;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  font-size: 18px;
-  padding: 15px;
+  // border-radius: 2px;
+  // border-top-right-radius: 0px;
+  // border-bottom-right-radius: 0px;
+  font-size: 14px;
+  // padding: 15px;
   height: 30px;
   width: 300px;
 }
 
 .searchIcon {
-  height: 60px;
-  width: 50px;
+  // height: 24px;
+  // width: 24px;
   background-color: white;
   display: grid;
   place-items: center;
+  background-size: contain;
+  cursor: pointer;
 }
 
 input:focus {
   outline: none;
 }
 .searchIcon svg {
-  font-size: 35px;
+  font-size: 30px;
 }
 
 .dataResult {
@@ -39,6 +45,7 @@ input:focus {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   overflow: hidden;
   overflow-y: auto;
+  z-index: 10;
 }
 
 .dataResult::-webkit-scrollbar {

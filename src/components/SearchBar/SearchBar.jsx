@@ -31,7 +31,7 @@ function SearchBar({ placeholder, data }) {
   }
 
   return (
-    <div className="search">
+    <div className="search position-relative mx-4">
       <div className="searchInputs">
         <input
           type="text"
@@ -48,7 +48,7 @@ function SearchBar({ placeholder, data }) {
         </div>
       </div>
       {filteredData.length != 0 && (
-        <div className="dataResult">
+        <div className="dataResult position-absolute">
           {filteredData.slice(0, 15).map((item, index) => {
             return (
               <li key = {index} className="dataItem" onClick={($event) => showBookDetails($event,item)}>
