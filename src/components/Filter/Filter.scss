@@ -1,0 +1,23 @@
+.filter-container {
+   .filter-item {
+    .filter-type-label {
+        font-size: 15px;
+    }
+    .filter-sub-categories {
+        .filter-sub-item {
+            .filter-sub-type-label {
+                font-size: 14px;
+            }
+            .filter-toggle-checkbox.MuiCheckbox-root,
+            .filter-toggle-checkbox.MuiButtonBase-root.Mui-checked,
+            .filter-toggle-checkbox.MuiCheckbox-colorSecondary.Mui-checked {
+                color: #000 !important;
+            }
+            .filter-toggle-checkbox.MuiCheckbox-colorSecondary:hover,
+            .filter-toggle-checkbox.MuiCheckbox-colorSecondary.Mui-checked:hover {
+                background-color: rgba(0, 0, 0, 0.04);
+            }
+        }
+    }
+   } 
+}
