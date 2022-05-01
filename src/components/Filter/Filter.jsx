@@ -9,7 +9,6 @@ function Filter({config, filterCallback}) {
 
     const handleChange = ({event, subfilterId, filterId}) => {
         const filters = JSON.parse(JSON.stringify(selectedFilters));
-
         if (event?.target?.checked) {
             filters[subfilterId] = event.target.checked;
         } else {

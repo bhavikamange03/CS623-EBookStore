@@ -1,4 +1,23 @@
 
+$i-1: '/assets/img/AlgorithmsForDummies.png';
+$i-2: '/assets/img/BeginningProgrammingWithJavaForDummies.png';
+$i-3: '/assets/img/100WeightLossTipsAndStopDieting.png';
+$i-4: '/assets/img/LosingWeightWithoutDieting.png';
+$i-5: '/assets/img/TheCarbNiteSolution.png';
+$i-6: '/assets/img/BreadBakingAnArtisansPerspective.png';
+$i-7: '/assets/img/The7HabitsOfHighlyEffectivePeople_PowerfulLessonsInPersonalChange.png';
+$i-8: '/assets/img/The8thHabit_FromEffectivenessToGreatness.png';
+$i-9: '/assets/img/MemoryManagment_AlgorithmsAndImplementationInC/C++.png';
+$i-10: '/assets/img/IPv6NetworkProgramming.png';
+$i-11: '/assets/img/ConceptsOfProgrammingLanguages.png';
+$i-12: '/assets/img/EnvironmentalBiotechnology.png';
+$i-13: '/assets/img/LowCalorieDietForDummies.png';
+$i-14: '/assets/img/SixSigmaForDummies.png';
+$i-15: '/assets/img/SummaryOfBecomingSteveJobs.png';
+$i-16: '/assets/img/MongoDBInAction.png';
+$i-17: '/assets/img/ForestryAndClimateChange.png';
+$i-18: '/assets/img/ClimateChangeInDevelopingCountries.png';
+
 .books-container {
     padding: 16px 0;
     .book-wrapper {
@@ -56,6 +75,60 @@
                 width: 100%;
                 background-repeat: no-repeat;
                 background-size: contain;
+                &.i-1 {
+                    background-image: url($i-1); 
+                }
+                &.i-2 {
+                    background-image: url($i-2); 
+                }
+                &.i-3 {
+                    background-image: url($i-3); 
+                }
+                &.i-4 {
+                    background-image: url($i-4); 
+                }
+                &.i-5 {
+                    background-image: url($i-5); 
+                }
+                &.i-6 {
+                    background-image: url($i-6); 
+                }
+                &.i-7 {
+                    background-image: url($i-7); 
+                }
+                &.i-8 {
+                    background-image: url($i-8); 
+                }
+                &.i-9 {
+                    background-image: url($i-9); 
+                }
+                &.i-10 {
+                    background-image: url($i-10); 
+                }
+                &.i-11 {
+                    background-image: url($i-11); 
+                }
+                &.i-12 {
+                    background-image: url($i-12); 
+                }
+                &.i-13 {
+                    background-image: url($i-13); 
+                }
+                &.i-14 {
+                    background-image: url($i-14); 
+                }
+                &.i-15 {
+                    background-image: url($i-15); 
+                }
+                &.i-16 {
+                    background-image: url($i-16); 
+                }
+                &.i-17 {
+                    background-image: url($i-17); 
+                }
+                &.i-18 {
+                    background-image: url($i-18); 
+                }
             }
             .book-details {
                 overflow: hidden;

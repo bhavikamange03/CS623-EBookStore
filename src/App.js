@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.scss";
 import SearchBar from "./components/SearchBar/SearchBar";
 import BookData from "./data.json";
@@ -7,6 +7,7 @@ import Filter from "./components/Filter/Filter";
 import { Row, Card, Col, Container } from 'react-bootstrap';
 
 function App() {
+  const [selectedFilters, setSelectedFilters] = useState({});
 
   const filterConfig = {
     filters: [
@@ -21,6 +22,7 @@ function App() {
           {id: "computer", label: "Computers", checked: false},
           {id: "business", label: "Business", checked: false},
           {id: "internet", label: "Internet", checked: false},
+          {id: "environment", label: "Environment", checked: false}
         ]
       },
       {
@@ -38,6 +40,7 @@ function App() {
 
   const handleFilterChange = (config) => {
     console.log('config', config);
+    setSelectedFilters(config);
   };
 
 
@@ -50,7 +53,7 @@ function App() {
           </Col>
           <Col md={10}>
             <SearchBar placeholder="Search" data={BookData}/>
-            <BooksGrid data={BookData}/>
+            <BooksGrid data={BookData} selectedFilters={selectedFilters}/>
           </Col>
         </Row>
       </Container>
