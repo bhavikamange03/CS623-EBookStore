@@ -18,25 +18,38 @@ function App() {
         name: "categories",
         id: "categories",
         data: [
-          {id: "novel", label: "Novel", checked: false},
-          {id: "fiction", label: "Fiction", checked: false},
-          {id: "non-fiction", label: "Non Fiction", checked: false},
-          {id: "education", label: "Education", checked: false},
-          {id: "computer", label: "Computers", checked: false},
+          {id: "health", label: "Health", checked: false},
+          {id: "cooking", label: "Cooking", checked: false},
+          {id: "development", label: "Self-Development", checked: false},
+          {id: "programming", label: "Programming", checked: false},
+          {id: "networking", label: "Networking", checked: false},
+          {id: "database", label: "Database", checked: false},
+          {id: "environment", label: "Environment", checked: false},
           {id: "business", label: "Business", checked: false},
-          {id: "internet", label: "Internet", checked: false},
-          {id: "environment", label: "Environment", checked: false}
+          {id: "autobiography", label: "Autobiography", checked: false}
         ]
       },
       {
         name: "author",
         id: "author",
         data: [
-          {id: "W. Frank", label: "W. Frank", checked: false},
-          {id: "Charlie Collins", label: "Charlie Collins", checked: false},
-          {id: "Robi Sen", label: "Robi Sen", checked: false},
-          {id: "Faisal Abid", label: "Faisal Abid", checked: false},
-          {id: "John Mueller", label: "John Mueller", checked: false}
+          {id: "Barry A. Burd", label: "Barry A. Burd", checked: false},
+          {id: "Bill Blunden", label: "Bill Blunden", checked: false},
+          {id: "Brent Schlender", label: "Brent Schlender", checked: false},
+          {id: "Bruce Williams", label: "Bruce Williams", checked: false},
+          {id: "C. Dorland", label: "C. Dorland", checked: false},
+          {id: "Daniel T. DiMuzio", label: "Daniel T. DiMuzio", checked: false},
+          {id: "Gareth M. Evans", label: "Gareth M. Evans", checked: false},
+          {id: "Jim M. Lynch", label: "Jim M. Lynch", checked: false},
+          {id: "John Keifer", label: "John Keifer", checked: false},
+          {id: "John Mueller", label: "John Mueller", checked: false},
+          {id: "Jun-ichiro-itojun Hagino", label: "Jun-ichiro-itojun Hagino", checked: false},
+          {id: "Kyle Banker", label: "Kyle Banker", checked: false},
+          {id: "Michael Hetherington", label: "Michael Hetherington", checked: false},
+          {id: "Nicholas Bjorn", label: "Nicholas Bjorn", checked: false},  
+          {id: "Rober W Sebesta", label: "Rober W Sebesta", checked: false},
+          {id: "Stephen R Covey", label: "Stephen R Covey", checked: false},
+          {id: "Susan McQuillan", label: "Susan McQuillan", checked: false}
         ]
       }
     ]

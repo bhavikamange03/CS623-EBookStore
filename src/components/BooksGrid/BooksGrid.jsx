@@ -15,7 +15,14 @@ function BooksGrid({ data }) {
   }
 
   const downloadBook = (book) => {
-    console.log('downloadBook item', book);
+    
+    const link = document.createElement('a');
+    link.href = book?.bookUrl; 
+    link.download = `${book.title}.pdf`;
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
     setModalShow(false);
   };
 

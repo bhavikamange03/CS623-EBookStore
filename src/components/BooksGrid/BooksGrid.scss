@@ -7,7 +7,7 @@ $i-5: '/assets/img/TheCarbNiteSolution.png';
 $i-6: '/assets/img/BreadBakingAnArtisansPerspective.png';
 $i-7: '/assets/img/The7HabitsOfHighlyEffectivePeople_PowerfulLessonsInPersonalChange.png';
 $i-8: '/assets/img/The8thHabit_FromEffectivenessToGreatness.png';
-$i-9: '/assets/img/MemoryManagment_AlgorithmsAndImplementationInC/C++.png';
+$i-9: '/assets/img/MemoryManagment_AlgorithmsAndImplementation.png';
 $i-10: '/assets/img/IPv6NetworkProgramming.png';
 $i-11: '/assets/img/ConceptsOfProgrammingLanguages.png';
 $i-12: '/assets/img/EnvironmentalBiotechnology.png';
@@ -142,4 +142,7 @@ $i-18: '/assets/img/ClimateChangeInDevelopingCountries.png';
     .cursor-pointer {
         cursor: pointer; 
     }
+}
+.invisible {
+    display: none !important;
 }
