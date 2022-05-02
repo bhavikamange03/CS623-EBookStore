@@ -29,7 +29,7 @@ function BookPreview(props) {
                         <div className="">
                             {props?.data?.shortDescription}
                         </div>
-                        <Button onClick={() => props.onDownload()}>Download</Button>
+                        <Button className="mt-4" onClick={() => props.onDownload()}>Download</Button>
                     </Col>
                 </Row>
             </Container>
