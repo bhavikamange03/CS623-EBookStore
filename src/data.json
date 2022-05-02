@@ -1,263 +1,272 @@
-[{
-    "_id":1,
-    "title":"Algorithms for dummies",
-    "thumbnailUrl":"/AlgorithmsForDummies.png",
-    "shortDescription":"Discover how algorithms shape and impact our digital world All data, big or small, starts with algorithms. Algorithms are mathematical equations that determine what we see—based on our likes, dislikes, queries, views, interests, relationships, and more",
-    "status":"PUBLISHED",
-    "authors":[
-       "John Mueller",
-       "Luca Massaron"
-    ],
-    "categories":[
-       "Programming",
-       "Computer Science"
-    ]
- },
- {
-    "_id":2,
-    "title":"Beginning Programming with Java for dummies",
-    "thumbnailUrl":"/BeginningProgrammingWithJavaForDummies.png",
-    "shortDescription":"A new edition of the bestselling guide to Java If you want to learn to speak the world’s most popular programming language like a native, Java For Dummies is your ideal companion. ",
-    "status":"PUBLISH",
-    "authors":[
-       "Barry A. Burd"
-    ],
-    "categories":[
-       "Java",
-       "Programming"
-    ]
- },
- {
-    "_id":3,
-    "title":"100 Weight Loss Tips And Stop Dieting",
-    "thumbnailUrl":"/100WeightLossTipsAndStopDieting.png",
-    "shortDescription":"DISCOVER WHAT YOU NEED TO KNOW TO ACTUALLY LOSE WEIGHT WITHOUT JUMPING FROM DIET TO DIET.",
-    "status":"PUBLISHED",
-    "authors":[
-       "Nicholas Bjorn"
-    ],
-    "categories":[
-       "Diet",
-       "health"
-    ]
- },
-{
-    "_id":4,
-    "title":"Losing Weight Without Dieting",
-    "thumbnailUrl":"/LosingWeightWithoutDieting.png",
-    "longDescription":"If you struggle with losing weight using modern and conventional methods than Chinese and Oriental medicine may be what you are looking for!",
-    "status":"PUBLISHED",
-    "authors":[
-       "Michael Hetherington"
-    ],
-    "categories":[
-       "Diet",
-       "health"
-    ]
- },
-{
-    "_id":5,
-    "title":"The Carb Nite Solution",
-    "thumbnailUrl":"/TheCarbNiteSolution.png",
-    "longDescription":"Trained as a physicist to rely only on concrete, verifiable research, John Kiefer has spent over a decade trying to discover a way to shed those unwanted pounds. This small volume explains his discovery and presents the research to back it up.",
-    "status":"PUBLISHED",
-    "authors":[
-       "John Keifer"
-    ],
-    "categories":[
-       "Deit",
-       "health"
-    ]
- },
-{
-        "_id":6,
-        "title":"Bread Baking: An Artisan's Perspective",
-        "thumbnailUrl":"/BreadBakingAnArtisansPerspective.png",
-        "shortDescription":"A guide to making artisan breads practically and profitably, Bread Baking: An Artisan's Perspective includes step-by-step instructions on mixing, fermentation, shaping, proofing and retarding, and baking. Written for both experienced and novice bakers, Bread Baking contains more than 150 helpful photos and drawings that illustrate techniques and showcase beautiful artisan bread products.",
-        "status":"PUBLISHED",
-        "authors":[
-           "Daniel T. DiMuzio"
-        ],
-        "categories":[
-           "Cooking",
-           "Baking"
-        ]
-     },
-     {
-        "_id":7,
-        "title":"The 7 Habits of Highly Effective People - Powerful Lessons in Personal Change",
-        "thumbnailUrl":"/The7HabitsOfHighlyEffectivePeople_PowerfulLessonsInPersonalChange.png",
-        "shortDescription":"InThe 7 Habits of Highly Effective People,author Stephen R. Covey presents a holistic, integrated, principle-centered approach for solving personal and professional problems. With penetrating insights and pointed anecdotes, Covey reveals a step-by-step pathway for living with fairness, integrity, service, and human dignity -- principles that give us the security to adapt to change and the wisdom and power to take advantage of the opportunities that change creates.  ",
-        "status":"PUBLISHED",
-        "authors":[
-           "Stephen R Covey"
-        ],
-        "categories":[
-           "Self Development",
-           "Personality Development"
-        ]
-     },
-     {
-        "_id":8,
-        "title":"The 8th Habit - From Effectiveness to Greatness",
-        "thumbnailUrl":"/The8thHabit_FromEffectivenessToGreatness.png",
-        "shortDescription":" The 8th Habit: From Effectiveness to Greatness is a book written by Stephen R. Covey, published in 2004. It is the sequel to The Seven Habits of Highly Effective People, first published in 1989. The book clarifies and reinforces Covey's earlier declaration that 'Interdependence is a higher value than independence'",
-        "status":"PUBLISHED",
-        "authors":[
-           "Stephen R Covey"
-        ],
-        "categories":[
-           "Self Development",
-           "Personality Development"
-        ]
-     },
-     {
-        "_id":9,
-        "title":"Memory Managment- Algorithms and Implementation in C/C++",
-        "thumbnailUrl":"/MemoryManagment_AlgorithmsAndImplementationInC/C++.png",
-        "shortDescription":"This book presents several concrete implementations of garbage collection and explicit memory management algorithms. Every implementation is complemented by an in-depth presentation of theory, followed by benchmark tests, a complete listing of C/C++ source code, and a discussion of each implementation's trade-offs.",
-        "status":"PUBLISH",
-        "authors":[
-           "Bill Blunden"
-        ],
-        "categories":[
-           "C/C++",
-           "Algorithms",
-           "Programming"
-        ]
-     },
-     {
-        "_id":10,
-        "title":"IPv6 Network Programming",
-        "thumbnailUrl":"/IPv6NetworkProgramming.png",
-        "shortDescription":"This book contains everything you need to make your application program support IPv6. IPv6 socket APIs (RFC2553) are fully described with real-world examples. It covers security, a great concern these days.",
-        "status":"PUBLISH",
-        "authors":[
-           "Jun-ichiro-itojun Hagino"
-        ],
-        "categories":[
-           "IPv6",
-           "Networking"
-        ]
-     },
-     {
-        "_id":11,
-        "title":"Concepts of Programming Languages",
-        "thumbnailUrl":"/ConceptsOfProgrammingLanguages.png",
-        "shortDescription":"The Eleventh Edition maintains an up-to-date discussion on the topic with the removal of outdated languages such as Ada and Fortran. The addition of relevant new topics and examples such as reflection and exception handling in Python and Ruby add to the currency of the text. Through a critical analysis of design issues of various program languages, Concepts of Computer Programming Languages teaches programmers the essential differences between computing with specific languages.",
-        "status":"PUBLISHED",
-        "authors":[
-           "Rober W Sebesta"
-        ],
-        "categories":[
-           "Programming",
-           "Algorithms"
-        ]
-     },
-     {
-        "_id":12,
-        "title":"Environmental Biotechnology",
-        "thumbnailUrl":"/EnvironmentalBiotechnology.png",
-        "shortDescription":"The application of biologically-engineered solutions toenvironmental problems has become far more readily acceptable andwidely understood. However there remains some uncertainty amongstpractitioners regarding how and where the microscopic, functionallevel fits into the macroscopic, practical applications. It isprecisely this gap which the book sets out to fill.",
-        "status":"PUBLISHED",
-        "authors":[
-           "Gareth M. Evans",
-           "Judith C. Furlong"
-        ],
-        "categories":[
-           "Earth",
-           "Sciences",
-           "environment"
-        ]
-     },
-     {
-        "_id":13,
-        "title":"Low Calorie Diet for dummies",
-        "thumbnailUrl":"/LowCalorieDietForDummies.png",
-        "shortDescription":"Break your bad habits and start enjoying a low-cal lifestyle! Want to lose weight and keep it off for good? This no-nonsense guide shows you how to consume fewer calories than you burn, providing a delicious, easy, and safe low-calorie plan you can follow for life!",
-        "status":"PUBLISHED",
-        "authors":[
-           "Susan McQuillan"
-        ],
-        "categories":[
-           "Diet",
-           "health"
-        ]
-     },
-     {
-        "_id":14,
-        "title":"Six Sigma for dummies",
-        "thumbnailUrl":"/SixSigmaForDummies.png",
-        "longDescription":"Six Sigma For Dummies enables readers to understand this popular management system and apply it to their small and medium-sized businesses to improve quality and reduce costs.",
-        "status":"PUBLISH",
-        "authors":[
-           "Craig Gygi",
-           "Neil DeCarlo",
-           "Bruce Williams"
-        ],
-        "categories":[
-           "Business"
-        ]
-     },
- 
-
-{
-    "_id":15,
-    "title":"Summary of Becoming Steve Jobs",
-    "thumbnailUrl":"/SummaryOfBecomingSteveJobs.png",
-    "shortDescription":"So much has been written about the late Steve Jobs that Brent Schlender and his co-author, Rick Tetzeli, wisely begin their biography with a prologue that explains why they wrote yet another biography of the Apple co-founder. Schlender, a former reporter for the Wall Street Journal and Fortune, became close to Jobs over twenty-five years of interviews, and was one of the few journalists Jobs trusted. They were the same age, shared a similar middle-class background, and even suffered severe health crises at the same time. When Jobs died, Schlender realized that his portrayal in the media remained inaccurate. Jobs was perceived as a genius whose abilities had been undermined by his egocentric, volatile, and demanding personality.",
-    "status":"PUBLISH",
-    "authors":[
-       "Brent Schlender",
-       "Rick Tetzeli"
-    ],
-    "categories":[
-       "Autobiography"
-    ]
- },
- {
-    "_id":16,
-    "title":"MongoDB in Action",
-    "thumbnailUrl":"/MongoDBInAction.png",
-    "shortDescription":"MongoDB In Action is a comprehensive guide to MongoDB for application developers. The book begins by explaining what makes MongoDB unique and describing its ideal use cases. A series of tutorials designed for MongoDB mastery then leads into detailed examples for leveraging MongoDB in e-commerce, social networking, analytics, and other common applications.",
-    "status":"PUBLISH",
-    "authors":[
-       "Kyle Banker"
-    ],
-    "categories":[
-       "Next Generation Databases"
-    ]
- },
-{
-    "_id":17,
-    "title":"Forestry and Climate Change",
-    "thumbnailUrl":"/ForestryAndClimateChange.png",
-    "shortDescription":"Climate change is one of the greatest challenges we face - both in terms of its potential impact on our societies and the earth, and the scale of international co-operation that is needed to confront it.",
-    "status":"PUBLISH",
-    "authors":[
-       "Peter H. Freer-Smith",
-       "Mark S. J. Broadmeadow",
-       "Jim M. Lynch"
-    ],
-    "categories":[
-       "Earth",
-       "environment",
-       "Climate change"
-    ]
- },
-{
-    "_id":18,
-    "title":"Climate Change in Developing Countries",
-    "thumbnailUrl":"/ClimateChangeInDevelopingCountries.png",
-    "shortDescription":"This book presents an overview of the studies conducted by the Netherlands Climate Change Studies Assistance program. The program was set up in recognition of the need for developing countries, in particular, to face the challenges confronting all countries under the UN Framework Convention on Climate Change. The book presents an overview of the main results in 13 countries: Bolivia, Colombia, Ecuador, Egypt, Ghana, Kazakhstan, Mali, Mongolia, Senegal, Suriname, Vietnam, Yemen and Zimbabwe. It provides a critical evaluation of the methodologies and approaches used, a cross-country synthesis and recommendations for further studies. Subjects dealt with include not only impact studies, but also vulnerability and adaptation, mitigation and climate related policy.",
-    "status":"PUBLISH",
-    "authors":[
-       "M. A. van Drunen",
-       "B. Lasage",
-       "C. Dorland"
-    ],
-    "categories":[
-       "Climate Change",
-       "environment"
-    ]
- }]
+[
+   {
+      "_id": 1,
+      "title": "Algorithms for dummies",
+      "thumbnailUrl": "/AlgorithmsForDummies.png",
+      "shortDescription": "Discover how algorithms shape and impact our digital world All data, big or small, starts with algorithms. Algorithms are mathematical equations that determine what we see—based on our likes, dislikes, queries, views, interests, relationships, and more",
+      "status": "PUBLISHED",
+      "authors": [
+         "John Mueller",
+         "Luca Massaron"
+      ],
+      "categories": [
+         "novel"
+      ],
+      "catagory": "novel"
+   },
+   {
+      "_id": 2,
+      "title": "Beginning Programming with Java for dummies",
+      "thumbnailUrl": "/BeginningProgrammingWithJavaForDummies.png",
+      "shortDescription": "A new edition of the bestselling guide to Java If you want to learn to speak the world’s most popular programming language like a native, Java For Dummies is your ideal companion. ",
+      "status": "PUBLISH",
+      "authors": [
+         "Barry A. Burd"
+      ],
+      "categories": [
+         "programming"
+      ],
+      "catagory": "programming"
+   },
+   {
+      "_id": 3,
+      "title": "100 Weight Loss Tips And Stop Dieting",
+      "thumbnailUrl": "/100WeightLossTipsAndStopDieting.png",
+      "shortDescription": "DISCOVER WHAT YOU NEED TO KNOW TO ACTUALLY LOSE WEIGHT WITHOUT JUMPING FROM DIET TO DIET.",
+      "status": "PUBLISHED",
+      "authors": [
+         "Nicholas Bjorn"
+      ],
+      "categories": [
+         "health"
+      ],
+      "catagory": "health"
+   },
+   {
+      "_id": 4,
+      "title": "Losing Weight Without Dieting",
+      "thumbnailUrl": "/LosingWeightWithoutDieting.png",
+      "longDescription": "If you struggle with losing weight using modern and conventional methods than Chinese and Oriental medicine may be what you are looking for!",
+      "status": "PUBLISHED",
+      "authors": [
+         "Michael Hetherington"
+      ],
+      "categories": [
+         "health"
+      ],
+      "catagory": "health"
+   },
+   {
+      "_id": 5,
+      "title": "The Carb Nite Solution",
+      "thumbnailUrl": "/TheCarbNiteSolution.png",
+      "longDescription": "Trained as a physicist to rely only on concrete, verifiable research, John Kiefer has spent over a decade trying to discover a way to shed those unwanted pounds. This small volume explains his discovery and presents the research to back it up.",
+      "status": "PUBLISHED",
+      "authors": [
+         "John Keifer"
+      ],
+      "categories": [
+         "health"
+      ],
+      "catagory": "health"
+   },
+   {
+      "_id": 6,
+      "title": "Bread Baking: An Artisan's Perspective",
+      "thumbnailUrl": "/BreadBakingAnArtisansPerspective.png",
+      "shortDescription": "A guide to making artisan breads practically and profitably, Bread Baking: An Artisan's Perspective includes step-by-step instructions on mixing, fermentation, shaping, proofing and retarding, and baking. Written for both experienced and novice bakers, Bread Baking contains more than 150 helpful photos and drawings that illustrate techniques and showcase beautiful artisan bread products.",
+      "status": "PUBLISHED",
+      "authors": [
+         "Daniel T. DiMuzio"
+      ],
+      "categories": [
+         "cooking",
+         "baking"
+      ],
+      "catagory": "cooking"
+   },
+   {
+      "_id": 7,
+      "title": "The 7 Habits of Highly Effective People - Powerful Lessons in Personal Change",
+      "thumbnailUrl": "/The7HabitsOfHighlyEffectivePeople_PowerfulLessonsInPersonalChange.png",
+      "shortDescription": "InThe 7 Habits of Highly Effective People,author Stephen R. Covey presents a holistic, integrated, principle-centered approach for solving personal and professional problems. With penetrating insights and pointed anecdotes, Covey reveals a step-by-step pathway for living with fairness, integrity, service, and human dignity -- principles that give us the security to adapt to change and the wisdom and power to take advantage of the opportunities that change creates.  ",
+      "status": "PUBLISHED",
+      "authors": [
+         "Stephen R Covey"
+      ],
+      "categories": [
+         "development"
+      ],
+      "catagory": "development"
+   },
+   {
+      "_id": 8,
+      "title": "The 8th Habit - From Effectiveness to Greatness",
+      "thumbnailUrl": "/The8thHabit_FromEffectivenessToGreatness.png",
+      "shortDescription": " The 8th Habit: From Effectiveness to Greatness is a book written by Stephen R. Covey, published in 2004. It is the sequel to The Seven Habits of Highly Effective People, first published in 1989. The book clarifies and reinforces Covey's earlier declaration that 'Interdependence is a higher value than independence'",
+      "status": "PUBLISHED",
+      "authors": [
+         "Stephen R Covey"
+      ],
+      "categories": [
+         "development"
+      ],
+      "catagory": "development"
+   },
+   {
+      "_id": 9,
+      "title": "Memory Managment- Algorithms and Implementation in C/C++",
+      "thumbnailUrl": "/MemoryManagment_AlgorithmsAndImplementationInC/C++.png",
+      "shortDescription": "This book presents several concrete implementations of garbage collection and explicit memory management algorithms. Every implementation is complemented by an in-depth presentation of theory, followed by benchmark tests, a complete listing of C/C++ source code, and a discussion of each implementation's trade-offs.",
+      "status": "PUBLISH",
+      "authors": [
+         "Bill Blunden"
+      ],
+      "categories": [
+         "programming"
+      ],
+      "catagory": "programming"
+   },
+   {
+      "_id": 10,
+      "title": "IPv6 Network Programming",
+      "thumbnailUrl": "/IPv6NetworkProgramming.png",
+      "shortDescription": "This book contains everything you need to make your application program support IPv6. IPv6 socket APIs (RFC2553) are fully described with real-world examples. It covers security, a great concern these days.",
+      "status": "PUBLISH",
+      "authors": [
+         "Jun-ichiro-itojun Hagino"
+      ],
+      "categories": [
+         "IPv6",
+         "networking"
+      ],
+      "catagory": "networking"
+   },
+   {
+      "_id": 11,
+      "title": "Concepts of Programming Languages",
+      "thumbnailUrl": "/ConceptsOfProgrammingLanguages.png",
+      "shortDescription": "The Eleventh Edition maintains an up-to-date discussion on the topic with the removal of outdated languages such as Ada and Fortran. The addition of relevant new topics and examples such as reflection and exception handling in Python and Ruby add to the currency of the text. Through a critical analysis of design issues of various program languages, Concepts of Computer Programming Languages teaches programmers the essential differences between computing with specific languages.",
+      "status": "PUBLISHED",
+      "authors": [
+         "Rober W Sebesta"
+      ],
+      "categories": [
+         "programming",
+         "algorithms"
+      ],
+      "catagory": "programming"
+   },
+   {
+      "_id": 12,
+      "title": "Environmental Biotechnology",
+      "thumbnailUrl": "/EnvironmentalBiotechnology.png",
+      "shortDescription": "The application of biologically-engineered solutions toenvironmental problems has become far more readily acceptable andwidely understood. However there remains some uncertainty amongstpractitioners regarding how and where the microscopic, functionallevel fits into the macroscopic, practical applications. It isprecisely this gap which the book sets out to fill.",
+      "status": "PUBLISHED",
+      "authors": [
+         "Gareth M. Evans",
+         "Judith C. Furlong"
+      ],
+      "categories": [
+         "Earth",
+         "Sciences",
+         "environment"
+      ],
+      "catagory": "environment"
+   },
+   {
+      "_id": 13,
+      "title": "Low Calorie Diet for dummies",
+      "thumbnailUrl": "/LowCalorieDietForDummies.png",
+      "shortDescription": "Break your bad habits and start enjoying a low-cal lifestyle! Want to lose weight and keep it off for good? This no-nonsense guide shows you how to consume fewer calories than you burn, providing a delicious, easy, and safe low-calorie plan you can follow for life!",
+      "status": "PUBLISHED",
+      "authors": [
+         "Susan McQuillan"
+      ],
+      "categories": [
+         "diet",
+         "health"
+      ],
+      "catagory": "health"
+   },
+   {
+      "_id": 14,
+      "title": "Six Sigma for dummies",
+      "thumbnailUrl": "/SixSigmaForDummies.png",
+      "longDescription": "Six Sigma For Dummies enables readers to understand this popular management system and apply it to their small and medium-sized businesses to improve quality and reduce costs.",
+      "status": "PUBLISH",
+      "authors": [
+         "Craig Gygi",
+         "Neil DeCarlo",
+         "Bruce Williams"
+      ],
+      "categories": [
+         "business"
+      ],
+      "catagory": "business"
+   },
+   {
+      "_id": 15,
+      "title": "Summary of Becoming Steve Jobs",
+      "thumbnailUrl": "/SummaryOfBecomingSteveJobs.png",
+      "shortDescription": "So much has been written about the late Steve Jobs that Brent Schlender and his co-author, Rick Tetzeli, wisely begin their biography with a prologue that explains why they wrote yet another biography of the Apple co-founder. Schlender, a former reporter for the Wall Street Journal and Fortune, became close to Jobs over twenty-five years of interviews, and was one of the few journalists Jobs trusted. They were the same age, shared a similar middle-class background, and even suffered severe health crises at the same time. When Jobs died, Schlender realized that his portrayal in the media remained inaccurate. Jobs was perceived as a genius whose abilities had been undermined by his egocentric, volatile, and demanding personality.",
+      "status": "PUBLISH",
+      "authors": [
+         "Brent Schlender",
+         "Rick Tetzeli"
+      ],
+      "categories": [
+         "autobiography"
+      ],
+      "catagory": "autobiography"
+   },
+   {
+      "_id": 16,
+      "title": "MongoDB in Action",
+      "thumbnailUrl": "/MongoDBInAction.png",
+      "shortDescription": "MongoDB In Action is a comprehensive guide to MongoDB for application developers. The book begins by explaining what makes MongoDB unique and describing its ideal use cases. A series of tutorials designed for MongoDB mastery then leads into detailed examples for leveraging MongoDB in e-commerce, social networking, analytics, and other common applications.",
+      "status": "PUBLISH",
+      "authors": [
+         "Kyle Banker"
+      ],
+      "categories": [
+         "databases"
+      ],
+      "catagory": "databases"
+   },
+   {
+      "_id": 17,
+      "title": "Forestry and Climate Change",
+      "thumbnailUrl": "/ForestryAndClimateChange.png",
+      "shortDescription": "Climate change is one of the greatest challenges we face - both in terms of its potential impact on our societies and the earth, and the scale of international co-operation that is needed to confront it.",
+      "status": "PUBLISH",
+      "authors": [
+         "Peter H. Freer-Smith",
+         "Mark S. J. Broadmeadow",
+         "Jim M. Lynch"
+      ],
+      "categories": [
+         "earth",
+         "environment",
+         "climate change"
+      ],
+      "catagory": "environment"
+   },
+   {
+      "_id": 18,
+      "title": "Climate Change in Developing Countries",
+      "thumbnailUrl": "/ClimateChangeInDevelopingCountries.png",
+      "shortDescription": "This book presents an overview of the studies conducted by the Netherlands Climate Change Studies Assistance program. The program was set up in recognition of the need for developing countries, in particular, to face the challenges confronting all countries under the UN Framework Convention on Climate Change. The book presents an overview of the main results in 13 countries: Bolivia, Colombia, Ecuador, Egypt, Ghana, Kazakhstan, Mali, Mongolia, Senegal, Suriname, Vietnam, Yemen and Zimbabwe. It provides a critical evaluation of the methodologies and approaches used, a cross-country synthesis and recommendations for further studies. Subjects dealt with include not only impact studies, but also vulnerability and adaptation, mitigation and climate related policy.",
+      "status": "PUBLISH",
+      "authors": [
+         "M. A. van Drunen",
+         "B. Lasage",
+         "C. Dorland"
+      ],
+      "categories": [
+         "climate change",
+         "environment"
+      ],
+      "category": "environment"
+   }
+]

@@ -6,20 +6,33 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 function Filter({config, filterCallback}) {
     const [selectedFilters, setFilters] = useState({});
+    const [selectedFilterConfig, setFilterConfig] = useState({});
 
     const handleChange = ({event, subfilterId, filterId}) => {
         const filters = JSON.parse(JSON.stringify(selectedFilters));
+        const filterConfig = JSON.parse(JSON.stringify(selectedFilterConfig));
+
+        if (!filterConfig[filterId]) {
+            filterConfig[filterId] = {};
+        }
+
         if (event?.target?.checked) {
             filters[subfilterId] = event.target.checked;
+            filterConfig[filterId][subfilterId] = event.target.checked;
         } else {
             if (filters[subfilterId]) {
                 delete filters[subfilterId];
+                delete filterConfig[filterId][subfilterId];
             }
         }
 
         setFilters(filters);
-        triggerCallback(filters);
+
+
+        setFilterConfig(filterConfig);
+
        
+        triggerCallback(filterConfig);
     };
 
     function triggerCallback(filters) {

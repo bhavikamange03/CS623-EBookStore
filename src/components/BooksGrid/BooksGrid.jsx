@@ -5,21 +5,9 @@ import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 import BookPreview from "../BookPreview/BookPreview";
 
-function BooksGrid({ data, selectedFilters }) {
+function BooksGrid({ data }) {
   const [modalShow, setModalShow] = React.useState(false);
   const [selectedBook, setSelectedBook] = React.useState({});
-
-  if (data && data.length > 0) {
-    // data = data.slice(0, 16);
-   
-    // data = data.filter((book) => {
-    //   const key = 'environment'; 
-    //   return book.categories.indexOf(key) !== -1;
-    // });
-
-    const filterKeys = Object.keys(selectedFilters);
-    console.log('selectedFilters filterKeys', filterKeys);
-  }
 
   const showBookDetails = (book) => {
     setSelectedBook(book);
@@ -36,7 +24,6 @@ function BooksGrid({ data, selectedFilters }) {
         <Container fluid className="my-5">
           <Row className="books-container">
             {data.map((book, index) => {
-              // console.log(book.thumbnailUrl);
               return (
                 <Col xl={2} lg={2} md={3} sm={6} xs={12} key={index} className="book-wrapper">
                   <Card className="book-item-holder">

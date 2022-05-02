@@ -7,10 +7,6 @@ import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 function BookPreview(props) {
     console.log('props data', props?.data);
 
-    function triggerDownload() {
-        props.onDownload();
-    }
-
     return (
       <Modal
         {...props}

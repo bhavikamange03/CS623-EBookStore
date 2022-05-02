@@ -3,32 +3,19 @@ import "./SearchBar.scss";
 import SearchIcon from "@material-ui/icons/Search";
 import CloseIcon from "@material-ui/icons/Close";
 
-function SearchBar({ placeholder, data }) {
-  const [filteredData, setFilteredData] = useState([]);
+function SearchBar({ placeholder, searchChangeCallback }) {
   const [wordEntered, setWordEntered] = useState("");
 
   const handleFilter = (event) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
-    const newFilter = data.filter((value) => {
-      return value.title.toLowerCase().includes(searchWord.toLowerCase());
-    });
-
-    if (searchWord === "") {
-      setFilteredData([]);
-    } else {
-      setFilteredData(newFilter);
-    }
+    searchChangeCallback(searchWord);
   };
 
   const clearInput = () => {
-    setFilteredData([]);
     setWordEntered("");
+    searchChangeCallback("");
   };
- 
-  function showBookDetails(event, item) {
-    console.log('showBookDetails', item);
-  }
 
   return (
     <div className="search position-relative mx-4">
@@ -40,24 +27,13 @@ function SearchBar({ placeholder, data }) {
           onChange={handleFilter}
         />
         <div className="searchIcon">
-          {filteredData.length === 0 ? (
+          {wordEntered?.length === 0 ? (
             <SearchIcon />
           ) : (
             <CloseIcon id="clearBtn" onClick={clearInput} />
           )}
         </div>
       </div>
-      {filteredData.length != 0 && (
-        <div className="dataResult position-absolute">
-          {filteredData.slice(0, 15).map((item, index) => {
-            return (
-              <li key = {index} className="dataItem" onClick={($event) => showBookDetails($event,item)}>
-                <p>{item.title} </p>
-              </li>
-            );
-          })}
-        </div>
-      )}
     </div>
   );
 }
