@@ -15,9 +15,10 @@ function BooksGrid({ data }) {
   }
 
   const downloadBook = (book) => {
-    
+    //download(book?.bookUrl,"geoip.json")
     const link = document.createElement('a');
     link.href = book?.bookUrl; 
+    console.log(link.href)
     link.download = `${book.title}.pdf`;
     link.target = '_blank';
     document.body.appendChild(link);
@@ -25,6 +26,20 @@ function BooksGrid({ data }) {
     document.body.removeChild(link);
     setModalShow(false);
   };
+  
+  function download(url, filename) {
+    fetch(url).then(function(t) {
+        return t.blob().then((b)=>{
+            var a = document.createElement("a");
+            a.href = URL.createObjectURL(b);
+            a.setAttribute("download", filename);
+            a.click();
+        }
+        );
+    });
+    }
+    
+    
 
   return (
       <>
@@ -36,7 +51,8 @@ function BooksGrid({ data }) {
                   <Card className="book-item-holder">
                     <div className="book-item">
                       <div className="bg-img-wrapper">
-                        <div className={`bg-img position-relative i-${book?._id}`}></div>
+                      <div style={{backgroundImage: `url(${book?.thumbnailUrl})`}} className="bg-img position-relative"></div>
+                        {/* <div className={`bg-img position-relative i-${book?._id}`}></div> */}
                       </div>
                       <div className="book-details mt-3" title={book?.title || ''}>
                         {book?.title || 'NA'}
