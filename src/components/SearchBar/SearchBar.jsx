@@ -18,7 +18,7 @@ function SearchBar({ placeholder, searchChangeCallback }) {
   };
 
   return (
-    <div className="search position-relative mx-4">
+    <div className="search position-relative">
       <div className="searchInputs">
         <input
           type="text"

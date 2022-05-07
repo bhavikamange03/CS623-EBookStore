@@ -5,25 +5,27 @@ import BookData from "./data.json";
 import BooksGrid from "./components/BooksGrid/BooksGrid";
 import Filter from "./components/Filter/Filter";
 import { Row, Card, Col, Container } from 'react-bootstrap';
-import {BrowserRouter, NavLink, Route, Switch} from "react-router-dom";
+import { BrowserRouter, NavLink, Route, Switch } from "react-router-dom";
 import Register from "./components/Register/register";
 import Login from "./components/Login/login";
 import premiumContent from "./components/premiumContent";
 import PublicRoute from "./routes/PublicRoute";
 import PrivateRoute from "./routes/PrivateRoute";
-import { getToken,getUser, setUserSession, resetUserSession } from "./service/AuthService";
+import { getToken, getUser, setUserSession, resetUserSession, isLoggedInUser } from "./service/AuthService";
 import axios from 'axios';
+// import LogoutIcon from "@material-ui/icons/Logout";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const verifyUrl = 'https://vj0owxzcge.execute-api.us-east-1.amazonaws.com/prod/verify';
 
 function App() {
 
-  const [isAuthenticating, setAuthenticating] = useState('');
+  const [isAuthenticating, setAuthenticating] = useState(true);
+  const [isUserLoggedIn, setLoggedInUser] = useState(false);
 
-  useEffect(()=>{
+  useEffect(() => {
     const token = getToken();
-    if (token === 'undefined' || token === undefined || token === null || !token)
-    {
+    if (token === 'undefined' || token === undefined || token === null || !token) {
       return;
     }
 
@@ -31,22 +33,22 @@ function App() {
       headers: {
         'x-api-key': 'T4qVraIt7M5NSlsETvhL8gGpmOCwx8oFhKpfJWc0',
         // 'Access-Control-Allow-Origin': "*",
+      }
     }
-}
 
-const requestBody = {
-    user : getUser(),
-    token : token
-   }
+    const requestBody = {
+      user: getUser(),
+      token: token
+    }
 
-   axios.post(verifyUrl, requestBody, requestConfig).then(response => {
-    setUserSession(response.data.user, response.data.token);
-    setAuthenticating(false);
-}).catch(() =>{
-    resetUserSession();
-    setAuthenticating(false);
-})
-},[])
+    axios.post(verifyUrl, requestBody, requestConfig).then(response => {
+      setUserSession(response.data.user, response.data.token);
+      setAuthenticating(false);
+    }).catch(() => {
+      resetUserSession();
+      setAuthenticating(false);
+    })
+  }, [])
 
 
   const [selectedFilters, setSelectedFilters] = useState({});
@@ -60,38 +62,38 @@ const requestBody = {
         name: "categories",
         id: "categories",
         data: [
-          {id: "health", label: "Health", checked: false},
-          {id: "cooking", label: "Cooking", checked: false},
-          {id: "development", label: "Self-Development", checked: false},
-          {id: "programming", label: "Programming", checked: false},
-          {id: "networking", label: "Networking", checked: false},
-          {id: "database", label: "Database", checked: false},
-          {id: "environment", label: "Environment", checked: false},
-          {id: "business", label: "Business", checked: false},
-          {id: "autobiography", label: "Autobiography", checked: false}
+          { id: "health", label: "Health", checked: false },
+          { id: "cooking", label: "Cooking", checked: false },
+          { id: "development", label: "Self-Development", checked: false },
+          { id: "programming", label: "Programming", checked: false },
+          { id: "networking", label: "Networking", checked: false },
+          { id: "database", label: "Database", checked: false },
+          { id: "environment", label: "Environment", checked: false },
+          { id: "business", label: "Business", checked: false },
+          { id: "autobiography", label: "Autobiography", checked: false }
         ]
       },
       {
         name: "author",
         id: "author",
         data: [
-          {id: "Barry A. Burd", label: "Barry A. Burd", checked: false},
-          {id: "Bill Blunden", label: "Bill Blunden", checked: false},
-          {id: "Brent Schlender", label: "Brent Schlender", checked: false},
-          {id: "Bruce Williams", label: "Bruce Williams", checked: false},
-          {id: "C. Dorland", label: "C. Dorland", checked: false},
-          {id: "Daniel T. DiMuzio", label: "Daniel T. DiMuzio", checked: false},
-          {id: "Gareth M. Evans", label: "Gareth M. Evans", checked: false},
-          {id: "Jim M. Lynch", label: "Jim M. Lynch", checked: false},
-          {id: "John Keifer", label: "John Keifer", checked: false},
-          {id: "John Mueller", label: "John Mueller", checked: false},
-          {id: "Jun-ichiro-itojun Hagino", label: "Jun-ichiro-itojun Hagino", checked: false},
-          {id: "Kyle Banker", label: "Kyle Banker", checked: false},
-          {id: "Michael Hetherington", label: "Michael Hetherington", checked: false},
-          {id: "Nicholas Bjorn", label: "Nicholas Bjorn", checked: false},  
-          {id: "Rober W Sebesta", label: "Rober W Sebesta", checked: false},
-          {id: "Stephen R Covey", label: "Stephen R Covey", checked: false},
-          {id: "Susan McQuillan", label: "Susan McQuillan", checked: false}
+          { id: "Barry A. Burd", label: "Barry A. Burd", checked: false },
+          { id: "Bill Blunden", label: "Bill Blunden", checked: false },
+          { id: "Brent Schlender", label: "Brent Schlender", checked: false },
+          { id: "Bruce Williams", label: "Bruce Williams", checked: false },
+          { id: "C. Dorland", label: "C. Dorland", checked: false },
+          { id: "Daniel T. DiMuzio", label: "Daniel T. DiMuzio", checked: false },
+          { id: "Gareth M. Evans", label: "Gareth M. Evans", checked: false },
+          { id: "Jim M. Lynch", label: "Jim M. Lynch", checked: false },
+          { id: "John Keifer", label: "John Keifer", checked: false },
+          { id: "John Mueller", label: "John Mueller", checked: false },
+          { id: "Jun-ichiro-itojun Hagino", label: "Jun-ichiro-itojun Hagino", checked: false },
+          { id: "Kyle Banker", label: "Kyle Banker", checked: false },
+          { id: "Michael Hetherington", label: "Michael Hetherington", checked: false },
+          { id: "Nicholas Bjorn", label: "Nicholas Bjorn", checked: false },
+          { id: "Rober W Sebesta", label: "Rober W Sebesta", checked: false },
+          { id: "Stephen R Covey", label: "Stephen R Covey", checked: false },
+          { id: "Susan McQuillan", label: "Susan McQuillan", checked: false }
         ]
       }
     ]
@@ -111,14 +113,14 @@ const requestBody = {
     let filterObject = {};
 
     if (booksData?.length > 0) {
-      
+
       let filterKeys = [];
       let categoriesKeys = [];
       let authorKeys = [];
-  
+
       if (filters) {
         filterKeys = Object.keys(filters);
-    
+
         if (filterKeys?.length > 0) {
           filterKeys.forEach((filter) => {
             if (filter === 'categories') {
@@ -128,12 +130,12 @@ const requestBody = {
             }
           });
         }
-  
+
         filterObject = {
           categories: categoriesKeys,
           authors: authorKeys
         };
-        
+
         let filteredData = multiPropsFilter(booksData, filterObject);
 
         filteredData = filteredData.filter(book => {
@@ -159,39 +161,72 @@ const requestBody = {
       });
     });
   };
+
   const token = getToken();
-  if (isAuthenticating && token){
+
+  if (isAuthenticating && token) {
     return <div>Authenticating...</div>
   }
-  return (
-    <div className="App">
+
+  const logoutApp = () => {
+    resetUserSession();
+  };
+
+  function Homepage() {
+    return (
       <Container fluid>
-        <Row className="">
-          <Col md={2}>
+        <div className="logo-wrapper mt-3">
+          <div className="pos-left">
+            <NavLink to="/">
+              <img src={`/logo.png`} alt="ebook icons" width="48" />
+            </NavLink>
+          </div>
+          <div className="pos-right">
+            {!isLoggedInUser() && <NavLink to="/login">Sign In</NavLink>}
+            {isLoggedInUser() && 
+              <div className="i-logout">
+                <NavLink to="/login">
+                  <ExitToAppIcon id="logoutBtn" onClick={logoutApp} />
+                </NavLink>
+                 
+              </div>
+            }
+          </div>
+        </div>
+        <Row className="w-100">
+          <Col md={3}>
+          </Col>
+          <Col md={9}>
+            <Container fluid className="">
+              <SearchBar placeholder="Search" searchChangeCallback={(searchTerm) => handleSearchChange(searchTerm)} />
+            </Container>
+
+          </Col>
+        </Row>
+        <Row className="w-100">
+          <Col md={3}>
             <Filter config={filterConfig} filterCallback={(config) => handleFilterChange(config)}></Filter>
           </Col>
-          <Col md={10}>
-            <SearchBar placeholder="Search" searchChangeCallback={(searchTerm) => handleSearchChange(searchTerm)}/>
-            <BrowserRouter>
-              <NavLink exact activeClassName = "active" to="/"> Home</NavLink>
-              <NavLink activeClassName = "active" to="/register">Register</NavLink>
-              <NavLink activeClassName = "active" to="/login">Login</NavLink>
-              <NavLink activeClassName = "active" to="/premium-content">Premium-content</NavLink>
-            <div className = "content">
-              <Switch>
-                {/* <Route exact path ="/" component = {BooksGrid}/> */}
-                <Route exact path='/' render={() => <BooksGrid data={booksFilterData} />} />
-                <PublicRoute exact path ="/register" component = {Register}/>
-                <PublicRoute exact path ="/login" component = {Login}/>
-                <PrivateRoute exact path ="/premium-content" component = {premiumContent}/>
-              </Switch>
-              {/* <BooksGrid data={booksFilterData}/> */}
-            </div>
-            </BrowserRouter>
-            
+          <Col md={9}>
+            <BooksGrid data={booksFilterData} />
           </Col>
         </Row>
       </Container>
+    );
+  };
+
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <div className="content">
+          <Switch>
+            <Route exact path='/' render={() => Homepage()} />
+            <PublicRoute exact path="/register" component={Register} />
+            <PublicRoute exact path="/login" component={Login} />
+            <PrivateRoute exact path="/premium-content" component={premiumContent} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     </div>
   );
 }

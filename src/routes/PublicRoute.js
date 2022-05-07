@@ -8,7 +8,7 @@ const PublicRoute = ({ component : Component, ...rest}) => {
             {...rest}
             render = {props => {
                 return !getToken() ? <Component {...props} />
-                : <Redirect to = {{pathname: 'premium-content'}}/>
+                : <Redirect to = {{pathname: '/'}}/>
 
             }}
             />

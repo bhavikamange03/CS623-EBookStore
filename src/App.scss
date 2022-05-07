@@ -12,3 +12,19 @@ body {
   padding: 0;
   margin: 0;
 }
+
+.logo-wrapper {
+  clear: both;
+  .pos-left {
+    top: 16px;
+    left: 32px;
+    position: absolute;
+    z-index: 2;
+  }
+  .pos-right {
+    top: 16px;
+    right: 32px;
+    position: absolute;
+    z-index: 2;
+  }
+}

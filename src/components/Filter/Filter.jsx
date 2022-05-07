@@ -42,7 +42,7 @@ function Filter({config, filterCallback}) {
 
     return (
         <Container fluid className="my-5">
-            <Row className="filter-container">
+            <Row className="filter-container pt-3">
                 {config?.filters.map((filter, filterindex) => {
                 return (
                     <div className="filter-item mb-4" key={`filter-${filterindex}`}>

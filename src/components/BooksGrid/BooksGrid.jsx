@@ -14,7 +14,7 @@ function BooksGrid({ data }) {
     setModalShow(true);
   }
 
-  const downloadBook = (book) => {
+  function downloadBook(book) {
     //download(book?.bookUrl,"geoip.json")
     const link = document.createElement('a');
     link.href = book?.bookUrl; 
@@ -75,7 +75,7 @@ function BooksGrid({ data }) {
           show={modalShow}
           onHide={() => setModalShow(false)}
           data={selectedBook}
-          onDownload={() => downloadBook(selectedBook)}
+          // pdfdownload={() => downloadBook(selectedBook)}
         />
       </>
   );
