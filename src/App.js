@@ -1,12 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.scss";
 import SearchBar from "./components/SearchBar/SearchBar";
 import BookData from "./data.json";
 import BooksGrid from "./components/BooksGrid/BooksGrid";
 import Filter from "./components/Filter/Filter";
 import { Row, Card, Col, Container } from 'react-bootstrap';
+import {BrowserRouter, NavLink, Route, Switch} from "react-router-dom";
+import Register from "./components/Register/register";
+import Login from "./components/Login/login";
+import premiumContent from "./components/premiumContent";
+import PublicRoute from "./routes/PublicRoute";
+import PrivateRoute from "./routes/PrivateRoute";
+import { getToken,getUser, setUserSession, resetUserSession } from "./service/AuthService";
+import axios from 'axios';
+
+const verifyUrl = 'https://vj0owxzcge.execute-api.us-east-1.amazonaws.com/prod/verify';
 
 function App() {
+
+  const [isAuthenticating, setAuthenticating] = useState('');
+
+  useEffect(()=>{
+    const token = getToken();
+    if (token === 'undefined' || token === undefined || token === null || !token)
+    {
+      return;
+    }
+
+    const requestConfig = {
+      headers: {
+        'x-api-key': 'T4qVraIt7M5NSlsETvhL8gGpmOCwx8oFhKpfJWc0',
+        // 'Access-Control-Allow-Origin': "*",
+    }
+}
+
+const requestBody = {
+    user : getUser(),
+    token : token
+   }
+
+   axios.post(verifyUrl, requestBody, requestConfig).then(response => {
+    setUserSession(response.data.user, response.data.token);
+    setAuthenticating(false);
+}).catch(() =>{
+    resetUserSession();
+    setAuthenticating(false);
+})
+},[])
+
+
   const [selectedFilters, setSelectedFilters] = useState({});
   const [searchText, setSearchText] = useState('');
   const [booksFilterData, setSelectedBooks] = useState(BookData);
@@ -117,7 +159,10 @@ function App() {
       });
     });
   };
-
+  const token = getToken();
+  if (isAuthenticating && token){
+    return <div>Authenticating...</div>
+  }
   return (
     <div className="App">
       <Container fluid>
@@ -127,7 +172,23 @@ function App() {
           </Col>
           <Col md={10}>
             <SearchBar placeholder="Search" searchChangeCallback={(searchTerm) => handleSearchChange(searchTerm)}/>
-            <BooksGrid data={booksFilterData}/>
+            <BrowserRouter>
+              <NavLink exact activeClassName = "active" to="/"> Home</NavLink>
+              <NavLink activeClassName = "active" to="/register">Register</NavLink>
+              <NavLink activeClassName = "active" to="/login">Login</NavLink>
+              <NavLink activeClassName = "active" to="/premium-content">Premium-content</NavLink>
+            <div className = "content">
+              <Switch>
+                {/* <Route exact path ="/" component = {BooksGrid}/> */}
+                <Route exact path='/' render={() => <BooksGrid data={booksFilterData} />} />
+                <PublicRoute exact path ="/register" component = {Register}/>
+                <PublicRoute exact path ="/login" component = {Login}/>
+                <PrivateRoute exact path ="/premium-content" component = {premiumContent}/>
+              </Switch>
+              {/* <BooksGrid data={booksFilterData}/> */}
+            </div>
+            </BrowserRouter>
+            
           </Col>
         </Row>
       </Container>
