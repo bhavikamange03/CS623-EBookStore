@@ -1,11 +1,11 @@
 
 .searchInputs {
-  margin-top: 8px;
   display: flex;
   border: 1px solid gray;
   display: inline-flex;
   border-radius: 20px;
   padding: 4px 12px;
+  width: 95%;
 }
 
 .search input {
@@ -13,7 +13,7 @@
   border: 0;
   font-size: 14px;
   height: 30px;
-  width: 300px;
+  width: 100%;
 }
 
 .searchIcon {

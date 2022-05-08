@@ -44,7 +44,7 @@
         }
         .book-item {
             padding: 8px 12px;
-            height: 220px;
+            height: 320px;
             cursor: pointer;
             .bg-img-wrapper {
             //    height: 160px;
@@ -52,10 +52,10 @@
             }
             .bg-img {
                 z-index: 1;
-                height: 160px;
+                height: 262px;
                 width: 100%;
                 background-repeat: no-repeat;
-                background-size: contain;
+                background-size: cover;
 
             }
             .book-details {

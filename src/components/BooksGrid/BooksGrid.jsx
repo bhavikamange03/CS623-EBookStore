@@ -45,9 +45,9 @@ function BooksGrid({ data }) {
       <>
         <Container fluid className="my-5">
           <Row className="books-container">
-            {data.map((book, index) => {
+            {data?.length !== 0 && data.map((book, index) => {
               return (
-                <Col xl={2} lg={2} md={3} sm={6} xs={12} key={index} className="book-wrapper">
+                <Col xl={3} lg={4} md={6} sm={6} xs={12} key={index} className="book-wrapper">
                   <Card className="book-item-holder">
                     <div className="book-item">
                       <div className="bg-img-wrapper">
@@ -69,6 +69,13 @@ function BooksGrid({ data }) {
                 </Col>
               );
             })}
+            {data?.length === 0 &&
+              <Col xs={12}>
+                <div className="d-flex justify-content-center align-middle no-data-block mt-5 pt-5">
+                    No data available
+                </div>
+              </Col>
+            }
           </Row>
         </Container>
         <BookPreview

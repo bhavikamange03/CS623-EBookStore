@@ -15,6 +15,10 @@ import { getToken, getUser, setUserSession, resetUserSession, isLoggedInUser } f
 import axios from 'axios';
 // import LogoutIcon from "@material-ui/icons/Logout";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import Payment from "./components/Payment/payment";
+import AddToCart from "./components/AddToCart/addToCart";
+
+const booksUrl = " https://vj0owxzcge.execute-api.us-east-1.amazonaws.com/prod/book";
 
 const verifyUrl = 'https://vj0owxzcge.execute-api.us-east-1.amazonaws.com/prod/verify';
 
@@ -184,7 +188,7 @@ function App() {
           <div className="pos-right">
             {!isLoggedInUser() && <NavLink to="/login">Sign In</NavLink>}
             {isLoggedInUser() && 
-              <div className="i-logout">
+              <div className="i-logout my-2">
                 <NavLink to="/login">
                   <ExitToAppIcon id="logoutBtn" onClick={logoutApp} />
                 </NavLink>
@@ -194,20 +198,19 @@ function App() {
           </div>
         </div>
         <Row className="w-100">
-          <Col md={3}>
+          <Col xs={3}>
           </Col>
-          <Col md={9}>
+          <Col xs={9}>
             <Container fluid className="">
               <SearchBar placeholder="Search" searchChangeCallback={(searchTerm) => handleSearchChange(searchTerm)} />
             </Container>
-
           </Col>
         </Row>
         <Row className="w-100">
-          <Col md={3}>
+          <Col xs={3}>
             <Filter config={filterConfig} filterCallback={(config) => handleFilterChange(config)}></Filter>
           </Col>
-          <Col md={9}>
+          <Col xs={9}>
             <BooksGrid data={booksFilterData} />
           </Col>
         </Row>
@@ -218,14 +221,14 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <div className="content">
-          <Switch>
-            <Route exact path='/' render={() => Homepage()} />
-            <PublicRoute exact path="/register" component={Register} />
-            <PublicRoute exact path="/login" component={Login} />
-            <PrivateRoute exact path="/premium-content" component={premiumContent} />
-          </Switch>
-        </div>
+      <Switch>
+        <Route exact path='/' render={() => Homepage()} />
+        <PublicRoute exact path="/register" component={Register} />
+        <PublicRoute exact path="/login" component={Login} />
+        <PrivateRoute exact path="/premium-content" component={premiumContent} />
+        <PublicRoute exact path="/payment" component={Payment} />
+        <PublicRoute exact path="/addtocart" component={AddToCart} />
+      </Switch>
       </BrowserRouter>
     </div>
   );
