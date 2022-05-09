@@ -40,7 +40,6 @@ function BooksGrid({ data, updateCartCallback}) {
       
       cartItems[item?._id] = item;
 
-      console.log(cartItems);
       if (cartItems) {
         cartItems = JSON.stringify(cartItems);
       }
@@ -57,10 +56,8 @@ function BooksGrid({ data, updateCartCallback}) {
   }
 
   function downloadBook(book) {
-    //download(book?.bookUrl,"geoip.json")
     const link = document.createElement('a');
     link.href = book?.bookUrl; 
-    console.log(link.href)
     link.download = `${book.title}.pdf`;
     link.target = '_blank';
     document.body.appendChild(link);

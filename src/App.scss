@@ -15,18 +15,19 @@ body {
 
 .logo-wrapper {
   clear: both;
-  .pos-left {
-    top: 16px;
-    left: 32px;
-    position: absolute;
-    z-index: 2;
-  }
-  .pos-right {
-    // top: 23px;
-    right: 32px;
-    position: absolute;
-    z-index: 2;
-  }
+}
+
+.pos-left {
+  top: 16px;
+  left: 32px;
+  position: absolute;
+  z-index: 2;
+}
+.pos-right {
+  // top: 23px;
+  right: 32px;
+  position: absolute;
+  z-index: 2;
 }
 
 .cursor-pointer {
