@@ -4,14 +4,51 @@ import { Row, Card, Col, Container } from 'react-bootstrap';
 import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 import BookPreview from "../BookPreview/BookPreview";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { getToken, getUser, setUserSession, resetUserSession, isLoggedInUser } from "../../service/AuthService";
+import { useHistory } from "react-router-dom";
 
 function BooksGrid({ data }) {
   const [modalShow, setModalShow] = React.useState(false);
   const [selectedBook, setSelectedBook] = React.useState({});
 
+  let history = useHistory();
+
   const showBookDetails = (book) => {
     setSelectedBook(book);
     setModalShow(true);
+  }
+
+  function getCartItems() {
+    if (isLoggedInUser()) {
+      let user = getUser();
+      let cartItems = localStorage.getItem(`cartItems-${user?.username}`);
+      if (cartItems === "undefined" || !cartItems) {
+        cartItems = [];
+      } else {
+        cartItems = JSON.parse(cartItems);
+      }
+      return cartItems;
+    }
+    return [];
+  }
+
+  function setCartItems(item) {
+    if (isLoggedInUser()) {
+      let user = getUser();
+      let cartItems = getCartItems() || [];
+
+      cartItems.push(item);
+      console.log(cartItems);
+      cartItems = JSON.stringify(cartItems);
+      localStorage.setItem(`cartItems-${user?.username}`, cartItems);
+    } else {
+      history.push('/login');
+    }
+  }
+
+  const addToCart = (book) => {
+    setCartItems(book);
   }
 
   function downloadBook(book) {
@@ -47,7 +84,7 @@ function BooksGrid({ data }) {
           <Row className="books-container">
             {data?.length !== 0 && data.map((book, index) => {
               return (
-                <Col xl={3} lg={4} md={6} sm={6} xs={12} key={index} className="book-wrapper">
+                <Col xl={4} lg={4} md={6} sm={6} xs={12} key={index} className="book-wrapper">
                   <Card className="book-item-holder">
                     <div className="book-item">
                       <div className="bg-img-wrapper">
@@ -57,12 +94,16 @@ function BooksGrid({ data }) {
                       <div className="book-details mt-3" title={book?.title || ''}>
                         {book?.title || 'NA'}
                       </div>
+                      <div className="book-details book-price mt-2">
+                        {`$${book?.price}`}
+                      </div>
                     </div>
                     <div className="book-overlay"></div>
                     <div className="book-overlay-content">
                       <div className="book-overlay-content-wrapper">
-                        <i className="mr-2 p-1 cursor-pointer" onClick={() => showBookDetails(book)}><RemoveRedEyeIcon /></i>
-                        <i className="p-1 cursor-pointer" onClick={() => downloadBook(book)}> <CloudDownloadIcon /></i>
+                        <i className="mx-2 p-1 cursor-pointer" onClick={() => showBookDetails(book)}><RemoveRedEyeIcon /></i>
+                        {/* <i className="p-1 cursor-pointer" onClick={() => downloadBook(book)}> <CloudDownloadIcon /></i> */}
+                        <i className="mx-2 p-1 cursor-pointer" onClick={() => addToCart(book)}> <ShoppingCartIcon /></i>
                       </div>
                     </div>
                   </Card>

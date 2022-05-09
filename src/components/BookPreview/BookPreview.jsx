@@ -3,10 +3,52 @@ import "./BookPreview.scss";
 import { Row, Card, Col, Container, Modal, ModalHeader, ModalBody, ModalFooter, ModalTitle, Button } from 'react-bootstrap';
 import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
+import { useHistory } from "react-router-dom";
+import { getToken, getUser, setUserSession, resetUserSession, isLoggedInUser } from "../../service/AuthService";
+import { Hidden } from "@material-ui/core";
 
 function BookPreview(props) {
-    console.log('props data', props?.data);
+    let history = useHistory();
 
+    function addToCart(item, routeToCheckout = false) {
+      setCartItems(item, routeToCheckout);
+    }
+
+    function buyNow(item) {
+      addToCart(item, true);
+    }
+
+    function getCartItems() {
+      if (isLoggedInUser()) {
+        let user = getUser();
+        let cartItems = localStorage.getItem(`cartItems-${user?.username}`);
+        if (cartItems === "undefined" || !cartItems) {
+          cartItems = [];
+        } else {
+          cartItems = JSON.parse(cartItems);
+        }
+        return cartItems;
+      }
+      return [];
+    }
+  
+    function setCartItems(item, routeToCheckout = false) {
+      if (isLoggedInUser()) {
+        let user = getUser();
+        let cartItems = getCartItems() || [];
+  
+        cartItems.push(item);
+        console.log(cartItems);
+        cartItems = JSON.stringify(cartItems);
+        localStorage.setItem(`cartItems-${user?.username}`, cartItems);
+
+        if (routeToCheckout) {
+          history.push('/payment');
+        }
+      } else {
+        history.push('/login');
+      }
+    }
 
 
     const downloadBook = (book) => {
@@ -30,8 +72,8 @@ function BookPreview(props) {
           centered
         >
           <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">
-              {props?.data?.title}
+            <Modal.Title id="contained-modal-title-vcenter" title={props?.data?.title || ''} style={{overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",  width: "95%", display: "inline-block"}}>
+              {props?.data?.title || ''}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -44,7 +86,11 @@ function BookPreview(props) {
                           <div className="">
                               {props?.data?.shortDescription}
                           </div>
-                          <Button className="mt-4" onClick={() => downloadBook(props?.data)}>Download</Button>
+                          <div className="book-details book-price mt-3 mb-2">
+                            {`$${props?.data?.price}`}
+                          </div>
+                          <Button className="mt-4 d-block add-cart-btn" onClick={() => addToCart(props?.data, false)}>Add to Cart</Button>
+                          <Button className="mt-4 d-block buy-now-btn" onClick={() => buyNow(props?.data)}>Buy Now</Button>
                       </Col>
                   </Row>
               </Container>

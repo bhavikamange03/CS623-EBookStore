@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.scss";
 import SearchBar from "./components/SearchBar/SearchBar";
-import BookData from "./data.json";
 import BooksGrid from "./components/BooksGrid/BooksGrid";
 import Filter from "./components/Filter/Filter";
 import { Row, Card, Col, Container } from 'react-bootstrap';
@@ -13,7 +12,6 @@ import PublicRoute from "./routes/PublicRoute";
 import PrivateRoute from "./routes/PrivateRoute";
 import { getToken, getUser, setUserSession, resetUserSession, isLoggedInUser } from "./service/AuthService";
 import axios from 'axios';
-// import LogoutIcon from "@material-ui/icons/Logout";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Payment from "./components/Payment/payment";
 import AddToCart from "./components/AddToCart/addToCart";
@@ -23,9 +21,13 @@ const booksUrl = " https://vj0owxzcge.execute-api.us-east-1.amazonaws.com/prod/b
 const verifyUrl = 'https://vj0owxzcge.execute-api.us-east-1.amazonaws.com/prod/verify';
 
 function App() {
-
   const [isAuthenticating, setAuthenticating] = useState(true);
   const [isUserLoggedIn, setLoggedInUser] = useState(false);
+
+  const [selectedFilters, setSelectedFilters] = useState({});
+  const [searchText, setSearchText] = useState('');
+  const [booksFilterData, setSelectedBooks] = useState([]);
+  const [BookData, setBooks] = useState([]);
 
   useEffect(() => {
     const token = getToken();
@@ -54,10 +56,29 @@ function App() {
     })
   }, [])
 
+  useEffect(() => {
 
-  const [selectedFilters, setSelectedFilters] = useState({});
-  const [searchText, setSearchText] = useState('');
-  const [booksFilterData, setSelectedBooks] = useState(BookData);
+    const requestConfig = {
+      headers: {
+        'x-api-key': 'T4qVraIt7M5NSlsETvhL8gGpmOCwx8oFhKpfJWc0',
+      }
+    }
+
+    axios.get(booksUrl, requestConfig).then(response => {
+      if (response?.data?.Items && response?.data?.Count > 0) {
+        setBooks(response.data.Items);
+        setSelectedBooks(response.data.Items);
+      } else {
+        setBooks([]);
+        setSelectedBooks([]);
+      }
+    }).catch((error) => {
+      setBooks([]);
+      setSelectedBooks([]);
+    })
+  }, [])
+
+
 
 
   const filterConfig = {
@@ -192,7 +213,6 @@ function App() {
                 <NavLink to="/login">
                   <ExitToAppIcon id="logoutBtn" onClick={logoutApp} />
                 </NavLink>
-                 
               </div>
             }
           </div>
@@ -211,7 +231,7 @@ function App() {
             <Filter config={filterConfig} filterCallback={(config) => handleFilterChange(config)}></Filter>
           </Col>
           <Col xs={9}>
-            <BooksGrid data={booksFilterData} />
+            <BooksGrid data={booksFilterData}/>
           </Col>
         </Row>
       </Container>
@@ -226,8 +246,8 @@ function App() {
         <PublicRoute exact path="/register" component={Register} />
         <PublicRoute exact path="/login" component={Login} />
         <PrivateRoute exact path="/premium-content" component={premiumContent} />
-        <PublicRoute exact path="/payment" component={Payment} />
-        <PublicRoute exact path="/addtocart" component={AddToCart} />
+        <PrivateRoute exact path="/payment" component={Payment} />
+        <PrivateRoute exact path="/addtocart" component={AddToCart} />
       </Switch>
       </BrowserRouter>
     </div>
