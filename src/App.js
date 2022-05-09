@@ -4,7 +4,8 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import BooksGrid from "./components/BooksGrid/BooksGrid";
 import Filter from "./components/Filter/Filter";
 import { Row, Card, Col, Container } from 'react-bootstrap';
-import { BrowserRouter, NavLink, Route, Switch } from "react-router-dom";
+import Badge from "@material-ui/core/Badge";
+import { BrowserRouter, NavLink, Route, Switch, useHistory } from "react-router-dom";
 import Register from "./components/Register/register";
 import Login from "./components/Login/login";
 import premiumContent from "./components/premiumContent";
@@ -29,6 +30,9 @@ function App() {
   const [searchText, setSearchText] = useState('');
   const [booksFilterData, setSelectedBooks] = useState([]);
   const [BookData, setBooks] = useState([]);
+  const [itemCount, setItemCount] = React.useState(0);
+
+  let history = useHistory();
 
   useEffect(() => {
     const token = getToken();
@@ -79,7 +83,9 @@ function App() {
     })
   }, [])
 
-
+  useEffect(() => {
+    processCartItems();
+  }, 0);
 
 
   const filterConfig = {
@@ -198,7 +204,33 @@ function App() {
     resetUserSession();
   };
 
-  function Homepage() {
+  function processCartItems() {
+    console.log('processCartItems called in app.js');
+    let items = getCartItems() || {};
+
+    if (items) {
+      const keys = Object.keys(items) || [];
+      const keyLen = keys?.length || 0
+      setItemCount(keyLen);
+    }
+  }
+
+  function getCartItems() {
+    if (isLoggedInUser()) {
+      let user = getUser();
+      let cartItems = localStorage.getItem(`cartItems-${user?.username}`);
+      if (cartItems === "undefined" || cartItems === "null" || cartItems === "null" || !cartItems) {
+        cartItems = {};
+      } else {
+        cartItems = JSON.parse(cartItems);
+      }
+      return cartItems;
+    }
+    return {};
+  }
+
+  function Homepage(history) {
+    processCartItems();
     return (
       <Container fluid>
         <div className="logo-wrapper mt-3">
@@ -212,7 +244,9 @@ function App() {
             {isLoggedInUser() && 
               <div className="my-2">
                 <NavLink to="/cart" className="mx-3">
+                <Badge color="secondary" badgeContent={itemCount}>
                   <ShoppingCartIcon id="cartBtn"/>
+                </Badge>
                 </NavLink>
                 <NavLink to="/login">
                   <ExitToAppIcon id="logoutBtn" onClick={logoutApp} />
@@ -235,7 +269,7 @@ function App() {
             <Filter config={filterConfig} filterCallback={(config) => handleFilterChange(config)}></Filter>
           </Col>
           <Col xs={9}>
-            <BooksGrid data={booksFilterData}/>
+            <BooksGrid data={booksFilterData} updateCartCallback={() => processCartItems()}/>
           </Col>
         </Row>
       </Container>
@@ -245,17 +279,17 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <Switch>
-        <Route exact path='/' render={() => Homepage()} />
-        <PublicRoute exact path="/register" component={Register} />
-        <PublicRoute exact path="/login" component={Login} />
-        <PrivateRoute exact path="/premium-content" component={premiumContent} />
-        <PrivateRoute exact path="/payment" component={Payment} />
-        <PrivateRoute exact path="/cart" component={AddToCart} />
-      </Switch>
+        <Switch>
+          <Route exact path='/' render={(history) => Homepage(history)} />
+          <PublicRoute exact path="/register" component={Register} />
+          <PublicRoute exact path="/login" component={Login} />
+          {/* <PrivateRoute exact path="/premium-content" component={premiumContent} /> */}
+          <PrivateRoute exact path="/checkout" component={Payment} />
+          <PrivateRoute exact path="/cart" component={AddToCart} />
+        </Switch>
       </BrowserRouter>
     </div>
   );
 }
-
+{/* <Route path='/mypath/:username' exact render= {routeProps =><MyCompo {...routeProps} key={document.location.href} />} /> */}
 export default App;

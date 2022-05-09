@@ -8,7 +8,7 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { getToken, getUser, setUserSession, resetUserSession, isLoggedInUser } from "../../service/AuthService";
 import { useHistory } from "react-router-dom";
 
-function BooksGrid({ data }) {
+function BooksGrid({ data, updateCartCallback}) {
   const [modalShow, setModalShow] = React.useState(false);
   const [selectedBook, setSelectedBook] = React.useState({});
 
@@ -46,6 +46,7 @@ function BooksGrid({ data }) {
       }
      
       localStorage.setItem(`cartItems-${user?.username}`, cartItems);
+      updateCartCallback();
     } else {
       history.push('/login');
     }
@@ -125,7 +126,7 @@ function BooksGrid({ data }) {
         </Container>
         <BookPreview
           show={modalShow}
-          onHide={() => setModalShow(false)}
+          onHide={() => { setModalShow(false); updateCartCallback(); }}
           data={selectedBook}
           // pdfdownload={() => downloadBook(selectedBook)}
         />

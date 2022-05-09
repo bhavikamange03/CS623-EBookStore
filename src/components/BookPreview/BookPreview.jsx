@@ -42,7 +42,7 @@ function BookPreview(props) {
         localStorage.setItem(`cartItems-${user?.username}`, cartItems);
 
         if (routeToCheckout) {
-          history.push('/payment');
+          history.push('/checkout');
         }
       } else {
         history.push('/login');
@@ -88,7 +88,7 @@ function BookPreview(props) {
                           <div className="book-details book-price mt-3 mb-2">
                             {`$${props?.data?.price}`}
                           </div>
-                          <Button className="mt-4 d-block add-cart-btn" onClick={() => addToCart(props?.data, false)}>Add to Cart</Button>
+                          <Button className="mt-4 d-block add-cart-btn" onClick={() => { addToCart(props?.data, false); props.onHide() }}>Add to Cart</Button>
                           <Button className="mt-4 d-block buy-now-btn" onClick={() => buyNow(props?.data)}>Buy Now</Button>
                       </Col>
                   </Row>

@@ -2,17 +2,17 @@ import React, { useEffect } from "react";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Badge from "@material-ui/core/Badge";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { useHistory } from "react-router-dom";
 import { getToken, getUser, setUserSession, resetUserSession, isLoggedInUser } from "../../service/AuthService";
-import { Row, Card, Col, Container } from 'react-bootstrap';
+import { Row, Button, Col, Container } from 'react-bootstrap';
 import { NavLink } from "react-router-dom";
 
 export default function AddToCart() {
   const [itemCount, setItemCount] = React.useState(1);
   const [cartList, setCartList] = React.useState([]);
+  const [total, setTotal] = React.useState(0);
 
   let history = useHistory();
 
@@ -32,9 +32,15 @@ export default function AddToCart() {
           itemData.push(items[key]);
         });
 
+        const total = itemData.reduce(function(sum, item) {
+          return sum + item.price;
+        }, 0);
+
         setCartList(itemData);
+        setTotal(total);
       } else {
         setCartList([]);
+        setTotal(0)
       }
     }
   }
@@ -42,10 +48,6 @@ export default function AddToCart() {
 
   function addToCart(item) {
     setCartItems(item);
-  }
-
-  function buyNow(item) {
-    addToCart(item, true);
   }
 
   function getCartItems() {
@@ -98,10 +100,14 @@ export default function AddToCart() {
 
   console.log('cartList', cartList);
 
+  function proceedToCheckout(item) {
+    history.push('/checkout');
+  }
+
   return (
     <Container fluid className="cart-container">
       <div className="pos-left mt-4 mx-2">
-        <NavLink to="/">
+        <NavLink to="/" >
           <img src={`/logo.png`} alt="ebook icons" width="48" />
         </NavLink>
       </div>
@@ -111,23 +117,26 @@ export default function AddToCart() {
         </div>
         {cartList?.length !== 0 && cartList.map((item, index) => {
           return (
-            <Row className="cart-item-wrapper w-100 mb-4" key={index} >
-              <Col xl={9} lg={9} md={9} sm={9} xs={9} className="">
-                <div className="">
-                  {item?.title}
-                </div>
-              </Col>
-              <Col xl={1} lg={1} md={1} sm={1} xs={1} className="">
-                <div className="">
-                  <DeleteIcon className="cursor-pointer" onClick={() => removeItemFromCart(item)} />
-                </div>
-              </Col>
-              <Col xl={2} lg={2} md={2} sm={2} xs={2} className="">
-                <div className="">
-                  {item?.price}
-                </div>
-              </Col>
-            </Row>)
+            <div className="w-100" key={index}>
+              <Row className="cart-item-wrapper w-100 mb-4">
+                <Col xl={9} lg={9} md={9} sm={9} xs={9} className="">
+                  <div className="">
+                    {item?.title}
+                  </div>
+                </Col>
+                <Col xl={1} lg={1} md={1} sm={1} xs={1} className="">
+                  <div className="">
+                    <DeleteIcon className="cursor-pointer" onClick={() => removeItemFromCart(item)} />
+                  </div>
+                </Col>
+                <Col xl={2} lg={2} md={2} sm={2} xs={2} className="">
+                  <div className="">
+                    {item?.price}
+                  </div>
+                </Col>
+              </Row>
+            </div>
+          )
         })}
         {cartList?.length === 0 &&
           <Row>
@@ -135,6 +144,21 @@ export default function AddToCart() {
               <div className="d-flex justify-content-center align-middle no-data-block mt-5 pt-5">
                 Your Cart is empty.
               </div>
+            </Col>
+          </Row>
+        }
+        {cartList?.length !== 0 &&
+          <Row className="mt-5">
+            <Col xs={8}>
+              <Button className="d-block proceed-to-checkout-btn" onClick={() => proceedToCheckout()}>Proceed to checkout</Button>
+            </Col>
+            <Col xs={3} className="px-5">
+              <span>
+                {`Subtotal (${cartList?.length} items): `}
+              </span>
+              <span className="font-weight-bold">
+                {`$${total}`}
+              </span>  
             </Col>
           </Row>
         }
