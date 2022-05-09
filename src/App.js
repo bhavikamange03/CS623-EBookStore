@@ -13,6 +13,7 @@ import PrivateRoute from "./routes/PrivateRoute";
 import { getToken, getUser, setUserSession, resetUserSession, isLoggedInUser } from "./service/AuthService";
 import axios from 'axios';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import Payment from "./components/Payment/payment";
 import AddToCart from "./components/AddToCart/addToCart";
 
@@ -209,7 +210,10 @@ function App() {
           <div className="pos-right">
             {!isLoggedInUser() && <NavLink to="/login">Sign In</NavLink>}
             {isLoggedInUser() && 
-              <div className="i-logout my-2">
+              <div className="my-2">
+                <NavLink to="/cart" className="mx-3">
+                  <ShoppingCartIcon id="cartBtn"/>
+                </NavLink>
                 <NavLink to="/login">
                   <ExitToAppIcon id="logoutBtn" onClick={logoutApp} />
                 </NavLink>
@@ -247,7 +251,7 @@ function App() {
         <PublicRoute exact path="/login" component={Login} />
         <PrivateRoute exact path="/premium-content" component={premiumContent} />
         <PrivateRoute exact path="/payment" component={Payment} />
-        <PrivateRoute exact path="/addtocart" component={AddToCart} />
+        <PrivateRoute exact path="/cart" component={AddToCart} />
       </Switch>
       </BrowserRouter>
     </div>

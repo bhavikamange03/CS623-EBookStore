@@ -5,7 +5,6 @@ import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 import { useHistory } from "react-router-dom";
 import { getToken, getUser, setUserSession, resetUserSession, isLoggedInUser } from "../../service/AuthService";
-import { Hidden } from "@material-ui/core";
 
 function BookPreview(props) {
     let history = useHistory();
@@ -22,22 +21,22 @@ function BookPreview(props) {
       if (isLoggedInUser()) {
         let user = getUser();
         let cartItems = localStorage.getItem(`cartItems-${user?.username}`);
-        if (cartItems === "undefined" || !cartItems) {
-          cartItems = [];
+        if (cartItems === "undefined" || cartItems === "null" || !cartItems) {
+          cartItems = {};
         } else {
           cartItems = JSON.parse(cartItems);
         }
         return cartItems;
       }
-      return [];
+      return {};
     }
   
     function setCartItems(item, routeToCheckout = false) {
       if (isLoggedInUser()) {
         let user = getUser();
-        let cartItems = getCartItems() || [];
+        let cartItems = getCartItems() || {};
   
-        cartItems.push(item);
+        cartItems[item._id] = item;
         console.log(cartItems);
         cartItems = JSON.stringify(cartItems);
         localStorage.setItem(`cartItems-${user?.username}`, cartItems);

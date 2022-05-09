@@ -23,24 +23,28 @@ function BooksGrid({ data }) {
     if (isLoggedInUser()) {
       let user = getUser();
       let cartItems = localStorage.getItem(`cartItems-${user?.username}`);
-      if (cartItems === "undefined" || !cartItems) {
-        cartItems = [];
+      if (cartItems === "undefined" || cartItems === "null" || !cartItems) {
+        cartItems = {};
       } else {
         cartItems = JSON.parse(cartItems);
       }
       return cartItems;
     }
-    return [];
+    return {};
   }
 
   function setCartItems(item) {
-    if (isLoggedInUser()) {
+    if (isLoggedInUser() && item) {
       let user = getUser();
-      let cartItems = getCartItems() || [];
+      let cartItems = getCartItems() || {};
+      
+      cartItems[item?._id] = item;
 
-      cartItems.push(item);
       console.log(cartItems);
-      cartItems = JSON.stringify(cartItems);
+      if (cartItems) {
+        cartItems = JSON.stringify(cartItems);
+      }
+     
       localStorage.setItem(`cartItems-${user?.username}`, cartItems);
     } else {
       history.push('/login');
