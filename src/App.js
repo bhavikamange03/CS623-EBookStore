@@ -94,15 +94,19 @@ function App() {
         name: "categories",
         id: "categories",
         data: [
-          { id: "health", label: "Health", checked: false },
+          { id: "baking", label: "Baking", checked: false},
+          { id: "climate change", label: "Climate Change", checked: false},
           { id: "cooking", label: "Cooking", checked: false },
-          { id: "development", label: "Self-Development", checked: false },
+          { id: "development", label: "Development", checked: false },
+          { id: "diet", label: "Diet", checked: false},
+          { id: "earth", label: "Earth", checked: false},
+          { id: "health", label: "Health", checked: false },
           { id: "programming", label: "Programming", checked: false },
           { id: "networking", label: "Networking", checked: false },
           { id: "database", label: "Database", checked: false },
           { id: "environment", label: "Environment", checked: false },
           { id: "business", label: "Business", checked: false },
-          { id: "autobiography", label: "Autobiography", checked: false }
+          { id: "autobiography", label: "Autobiography", checked: false }       
         ]
       },
       {
@@ -205,7 +209,6 @@ function App() {
   };
 
   function processCartItems() {
-    console.log('processCartItems called in app.js');
     let items = getCartItems() || {};
 
     if (items) {
