@@ -67,7 +67,7 @@ const Login = (props) => {
                 </div>
                 
                 <div className="mt-2 text-center">
-                    <NavLink to="/register">New user? Create account.</NavLink>
+                    <NavLink to="/register">New user? Create account!!</NavLink>
                 </div>
             </form>
             {message && <p className = "message">{message}</p>}
