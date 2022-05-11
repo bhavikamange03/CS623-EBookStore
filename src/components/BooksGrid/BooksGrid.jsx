@@ -7,10 +7,17 @@ import BookPreview from "../BookPreview/BookPreview";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { getToken, getUser, setUserSession, resetUserSession, isLoggedInUser } from "../../service/AuthService";
 import { useHistory } from "react-router-dom";
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 function BooksGrid({ data, updateCartCallback}) {
   const [modalShow, setModalShow] = React.useState(false);
   const [selectedBook, setSelectedBook] = React.useState({});
+  const [open, setOpen] = React.useState(false);
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
 
   let history = useHistory();
 
@@ -45,6 +52,7 @@ function BooksGrid({ data, updateCartCallback}) {
       }
      
       localStorage.setItem(`cartItems-${user?.username}`, cartItems);
+      handleClick();
       updateCartCallback();
     } else {
       history.push('/login');
@@ -76,9 +84,19 @@ function BooksGrid({ data, updateCartCallback}) {
         }
         );
     });
+  }
+  
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
     }
-    
-    
+
+    setOpen(false);
+  };
 
   return (
       <>
@@ -127,6 +145,11 @@ function BooksGrid({ data, updateCartCallback}) {
           data={selectedBook}
           // pdfdownload={() => downloadBook(selectedBook)}
         />
+        <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+            Book added to the cart successfully!
+          </Alert>
+        </Snackbar>
       </>
   );
 

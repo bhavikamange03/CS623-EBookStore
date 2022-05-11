@@ -3,8 +3,16 @@ import "./BookPreview.scss";
 import { Row, Col, Container, Modal, ModalHeader, ModalBody, ModalFooter, ModalTitle, Button } from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
 import { getToken, getUser, setUserSession, resetUserSession, isLoggedInUser } from "../../service/AuthService";
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 function BookPreview(props) {
+  const [open, setOpen] = React.useState(false);
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
   let history = useHistory();
 
   function addToCart(item, routeToCheckout = false) {
@@ -38,7 +46,7 @@ function BookPreview(props) {
 
       cartItems = JSON.stringify(cartItems);
       localStorage.setItem(`cartItems-${user?.username}`, cartItems);
-
+      handleClick();
       if (routeToCheckout) {
         history.push('/checkout');
       }
@@ -57,6 +65,18 @@ function BookPreview(props) {
     link.click();
     document.body.removeChild(link);
     props.onHide();
+  };
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
   };
 
   return (
@@ -95,6 +115,11 @@ function BookPreview(props) {
           <Button onClick={() => props.onHide()}>Close</Button>
         </Modal.Footer>
       </Modal>
+      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          Book added to the cart successfully!
+        </Alert>
+      </Snackbar>
     </>
   );
 }

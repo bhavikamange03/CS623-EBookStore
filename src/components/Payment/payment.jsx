@@ -16,10 +16,13 @@ import { NavLink } from "react-router-dom";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import Badge from "@material-ui/core/Badge";
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 function Payment() {
   const [cartList, setCartList] = useState([]);
   const [total, setTotal] = useState(0);
+  const [open, setOpen] = React.useState(false);
 
   let history = useHistory();
 
@@ -27,6 +30,9 @@ function Payment() {
     processCartItems();
   }, []);
 
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
 
   function processCartItems() {
     let items = getCartItems() || {};
@@ -67,12 +73,27 @@ function Payment() {
     return {};
   }
 
+  function resetCartItems() {
+    if (isLoggedInUser()) {
+      let user = getUser();
+      let cartItems = {};
+
+      cartItems = JSON.stringify(cartItems);
+
+      localStorage.setItem(`cartItems-${user?.username}`, cartItems);
+    } else {
+      history.push('/login');
+    }
+  }
+
   const onSubmit = async values => {
     if (cartList?.length > 0) {
       for (let i = 0; i < cartList.length; i++) {
         downloadBook(cartList[i]);
       }
     }
+    handleClick();
+    paymentSuccess();
   }
 
   const required = value => (value ? undefined : 'Required')
@@ -80,6 +101,25 @@ function Payment() {
   const logoutApp = () => {
     resetUserSession();
   };
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const paymentSuccess = () => {
+    resetCartItems();
+    setTimeout(() => {
+      history.push('/');
+    }, 8000);
+  }
 
   function downloadBook(book) {
     const link = document.createElement('a');
@@ -93,137 +133,144 @@ function Payment() {
   };
 
   return (
-    <Container fluid className="">
-      <div className="pos-left mt-2">
-        <NavLink to="/" >
-          <img src={`/logo.png`} alt="ebook icons" width="48" />
-        </NavLink>
-      </div>
-      <div className="pos-right mt-4 mx-4">   
-        <div className="my-2">
-          <NavLink to="/cart" className="mx-3">
-          <Badge color="secondary" badgeContent={cartList?.length || 0}>
-            <ShoppingCartIcon id="cartBtn"/>
-          </Badge>
-          </NavLink>
-          <NavLink to="/login">
-            <ExitToAppIcon id="logoutBtn" onClick={logoutApp} />
+    <>
+      <Container fluid className="">
+        <div className="pos-left mt-2">
+          <NavLink to="/" >
+            <img src={`/logo.png`} alt="ebook icons" width="48" />
           </NavLink>
         </div>
-      </div>
-      <Row className="checkout-container my-5 pt-5">
-        <Col xl={6} lg={6} md={6} sm={12} xs={12} className="payment-wrapper">
-          <Styles>
-            <Form
-              onSubmit={onSubmit}
-              render={({
-                handleSubmit,
-                form,
-                submitting,
-                pristine,
-                values,
-                active
-              }) => {
-                return (
-                  <form onSubmit={handleSubmit}>
-                    <Card
-                      number={values.number || ''}
-                      name={values.name || ''}
-                      expiry={values.expiry || ''}
-                      cvc={values.cvc || ''}
-                      focused={active}
-                    />
-                    <div>
-                      <Field
-                        name="number"
-                        component="input"
-                        type="text"
-                        pattern="[\d| ]{16,22}"
-                        placeholder="Card Number"
-                        format={formatCreditCardNumber}
-                        validate={required}
-                      />
-                    </div>
-                    <div>
-                      <Field
-                        name="name"
-                        component="input"
-                        type="text"
-                        placeholder="Name"
-                        validate={required}
-                      />
-                    </div>
-                    <div>
-                      <Field
-                        name="expiry"
-                        component="input"
-                        type="text"
-                        pattern="\d\d/\d\d"
-                        placeholder="Valid Thru"
-                        format={formatExpirationDate}
-                        validate={required}
-                      />
-                      <Field
-                        name="cvc"
-                        component="input"
-                        type="text"
-                        pattern="\d{3,4}"
-                        placeholder="CVC"
-                        format={formatCVC}
-                        validate={required}
-                      />
-                    </div>
-                    <div className="buttons">
-                      <button type="submit" disabled={submitting}>
-                        Place Your Order
-                      </button>
-                      <button
-                        type="button"
-                        onClick={form.reset}
-                        disabled={submitting || pristine}
-                      >
-                        Reset
-                    </button>
-                    </div>
-                  </form>
-                )
-              }}
-            />
-          </Styles>
-        </Col>
-        <Col xl={6} lg={6} md={6} sm={12} xs={12} className="order-summary-wrapper">
-          <div className="mt-5">
-            <div className="order-summary-title">
-              Order summary
-            </div>
-            <div className="order-total">
-              <Row className="order-item">
-                <Col xs={6}>
-                  {`Items: ${cartList?.length || 0}`}
-                </Col>
-                <Col xs={6}>
-                  {total}
-                </Col>
-              </Row>
-              <Row className="order-item">
-                <Col xs={6}>
-                  Estimated tax to be collected:
-                </Col>
-                <Col xs={6}>
-                  {total * 0.090}
-                </Col>
-              </Row>
-              <Row className="order-item">
-                <Col xs={6}>Order total:</Col>
-                <Col xs={6}>
-                  {total * 1.090}
-                </Col>
-              </Row>
-            </div>
+        <div className="pos-right mt-4 mx-4">   
+          <div className="my-2">
+            <NavLink to="/cart" className="mx-3">
+            <Badge color="secondary" badgeContent={cartList?.length || 0}>
+              <ShoppingCartIcon id="cartBtn"/>
+            </Badge>
+            </NavLink>
+            <NavLink to="/login">
+              <ExitToAppIcon id="logoutBtn" onClick={logoutApp} />
+            </NavLink>
           </div>
-        </Col>
-      </Row>
-    </Container>
+        </div>
+        <Row className="checkout-container my-5 pt-5">
+          <Col xl={6} lg={6} md={6} sm={12} xs={12} className="payment-wrapper">
+            <Styles>
+              <Form
+                onSubmit={onSubmit}
+                render={({
+                  handleSubmit,
+                  form,
+                  submitting,
+                  pristine,
+                  values,
+                  active
+                }) => {
+                  return (
+                    <form onSubmit={handleSubmit}>
+                      <Card
+                        number={values.number || ''}
+                        name={values.name || ''}
+                        expiry={values.expiry || ''}
+                        cvc={values.cvc || ''}
+                        focused={active}
+                      />
+                      <div>
+                        <Field
+                          name="number"
+                          component="input"
+                          type="text"
+                          pattern="[\d| ]{16,22}"
+                          placeholder="Card Number"
+                          format={formatCreditCardNumber}
+                          validate={required}
+                        />
+                      </div>
+                      <div>
+                        <Field
+                          name="name"
+                          component="input"
+                          type="text"
+                          placeholder="Name"
+                          validate={required}
+                        />
+                      </div>
+                      <div>
+                        <Field
+                          name="expiry"
+                          component="input"
+                          type="text"
+                          pattern="\d\d/\d\d"
+                          placeholder="Valid Thru"
+                          format={formatExpirationDate}
+                          validate={required}
+                        />
+                        <Field
+                          name="cvc"
+                          component="input"
+                          type="text"
+                          pattern="\d{3,4}"
+                          placeholder="CVC"
+                          format={formatCVC}
+                          validate={required}
+                        />
+                      </div>
+                      <div className="buttons">
+                        <button type="submit" disabled={submitting}>
+                          Place Your Order
+                        </button>
+                        <button
+                          type="button"
+                          onClick={form.reset}
+                          disabled={submitting || pristine}
+                        >
+                          Reset
+                      </button>
+                      </div>
+                    </form>
+                  )
+                }}
+              />
+            </Styles>
+          </Col>
+          <Col xl={6} lg={6} md={6} sm={12} xs={12} className="order-summary-wrapper">
+            <div className="mt-5">
+              <div className="order-summary-title">
+                Order summary
+              </div>
+              <div className="order-total">
+                <Row className="order-item">
+                  <Col xs={6}>
+                    {`Items: ${cartList?.length || 0}`}
+                  </Col>
+                  <Col xs={6}>
+                    {total}
+                  </Col>
+                </Row>
+                <Row className="order-item">
+                  <Col xs={6}>
+                    Estimated tax to be collected:
+                  </Col>
+                  <Col xs={6}>
+                    {total * 0.090}
+                  </Col>
+                </Row>
+                <Row className="order-item">
+                  <Col xs={6}>Order total:</Col>
+                  <Col xs={6}>
+                    {total * 1.090}
+                  </Col>
+                </Row>
+              </div>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          Payment successful, your books will be downloading shortly!
+        </Alert>
+      </Snackbar>
+    </>
   )
 }
 
