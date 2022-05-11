@@ -200,9 +200,9 @@ function App() {
 
   const token = getToken();
 
-  if (isAuthenticating && token) {
-    return <div>Authenticating...</div>
-  }
+  // if (isAuthenticating && token) {
+  //   return <div>Authenticating...</div>
+  // }
 
   const logoutApp = () => {
     resetUserSession();
