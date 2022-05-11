@@ -94,7 +94,7 @@ function App() {
         name: "categories",
         id: "categories",
         data: [
-          { id: "baking", label: "Baking", checked: false},
+          { id: "baking", label: "baking", checked: false},
           { id: "climate change", label: "Climate Change", checked: false},
           { id: "cooking", label: "Cooking", checked: false },
           { id: "development", label: "Development", checked: false },
